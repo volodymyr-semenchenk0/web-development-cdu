@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('variables.css');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: white;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    padding: 16px 0;
+    justify-content: center;
+    position: sticky;
+    top: 16px;
+}
+
+.nav {
+    display: flex;
+    gap: 24px;
+    padding: 16px 24px;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 64px;
+}
+
+.nav .nav__divider {
+    height: 24px;
+    width: 1px;
+    background: var(--color-border);
+}
+
+.nav .nav__link {
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 26px;
+    color: #010100;
+    transition:  color 0.5s;
+}
+
+.nav .nav__link:hover {
+    color: blue;
+}
+
+.content {
+    display: flex;
+    gap: 36px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.content .label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 8px 12px;
+    border-radius: 24px;
+    background: #FAFAFA;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12) inset;
+}
+
+.content .ic_globe {
+    width: 24px;
+}
+
+#GlobeIcon {
+    stroke: #6E1F07;
+}
+
+.content .label__text {
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #6E1F07;
+}
+
+.main-container__main-text {
+    font-size: 64px;
+    line-height: 72px;
+    text-align: center;
+    letter-spacing: -2px;
+    background: linear-gradient(265deg, #FF4810 36%, #280B02 88%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+    line-height: 24px;
+    color: #808080;
+}
+
