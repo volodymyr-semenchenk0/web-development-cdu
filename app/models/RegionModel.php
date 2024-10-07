@@ -7,11 +7,18 @@ class Region {
     public $population;
     public $higherEducationInstitutions;
 
+    public $institutionsBy100000Population;
+
     public function __construct($id, $region, $population, $higherEducationInstitutions) {
         $this->id = $id;
         $this->name = $region;
         $this->population = $population;
         $this->higherEducationInstitutions = $higherEducationInstitutions;
+        $this->institutionsBy100000Population =$this->calcInstitutionsBy100000Population();
+    }
+
+    private function calcInstitutionsBy100000Population(): float {
+        return round($this->higherEducationInstitutions / ($this->population * 10000) * 1000000, 2);
     }
     public function __toString() {
         return "Region name is: " . $this->name ."; ".
@@ -28,8 +35,11 @@ class Region {
             $name = trim(fgets($myFile));
             $population = trim(fgets($myFile));
             $higherEducationInstitutions = trim(fgets($myFile));
-            $id += $id;
-            $regions[] = new Region($id, $name, $population, $higherEducationInstitutions);
+
+            if (!empty($name) && !empty($population) && !empty($higherEducationInstitutions)) {
+                $id++;
+                $regions[] = new Region($id, $name, $population, $higherEducationInstitutions);
+            }
         }
         fclose($myFile);
 

@@ -1,0 +1,12 @@
+@import url('main.css');
+@import url('variables.css');
+
+th:nth-last-child(-n+3),
+td:nth-last-child(-n+3) {
+    text-align: right;
+    width: 200px;
+}
+
+td:nth-last-child(-n+3) {
+    font-family: monospace, monospace;
+}

@@ -109,24 +109,28 @@ body {
 }
 
 .table {
-
     border-radius: 24px;
     border-collapse: collapse;
 }
 
-
-th {
+th , td {
     font-size: 14px;
-    line-height: 22px;
+    line-height: 20px;
     text-align: left;
-    padding: 12px;
-    background: #efefef;
+    color: var(--color-text);
+    padding: 12px 16px;
 }
 
-td {
-    padding: 12px;
+th {
+    background: #f3f3f3;
 }
 
 tr {
-    border: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
+
+tr:hover {
+    background: var(--color-border);
+}
+
+
