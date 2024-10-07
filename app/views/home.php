@@ -14,7 +14,7 @@
             </svg>
             <p class="label__text">php study project</p>
         </div>
-        <p class="main-container__main-text"><?php echo isset($message) ? $message : "No message available."; ?></p>
+        <p class="main-container__main-text"><?php echo $message ?? 'String is empty'; ?></p>
     </section>
     <?php require_once 'components/footer.php'; ?>
 </body>

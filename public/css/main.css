@@ -17,14 +17,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .header {
     display: flex;
     padding: 16px 0;
-    justify-content: center;
-    position: sticky;
     top: 16px;
 }
 
@@ -57,11 +54,11 @@ body {
 
 .content {
     display: flex;
+    padding: 24px 0;
     gap: 36px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
 .content .label {
@@ -111,3 +108,25 @@ body {
     color: #808080;
 }
 
+.table {
+
+    border-radius: 24px;
+    border-collapse: collapse;
+}
+
+
+th {
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+    padding: 12px;
+    background: #efefef;
+}
+
+td {
+    padding: 12px;
+}
+
+tr {
+    border: 1px solid var(--color-border);
+}
