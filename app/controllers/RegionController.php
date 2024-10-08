@@ -4,7 +4,7 @@ require_once 'app/models/RegionModel.php';
 
 class RegionController
 {
-    public function index()
+    public function index(): void
     {
         $regions = Region::getAllRegionsFromFile("storage/oblinfo.txt");
 

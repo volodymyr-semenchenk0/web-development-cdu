@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Regions</title>
-    <link rel="stylesheet" href="/public/css/regions.css">
-</head>
+<?php
+    $title = "Regions";
+    require_once 'components/head.php';
+?>
 <body>
     <?php require_once 'components/header.php'; ?>
-    <section class="content">
+    <div id="root">
         <h1>Regions List</h1>
-        <table class="table">
+        <table class="regions-table">
                 <tr>
                     <th>#</th>
                     <th>Область</th>
@@ -33,7 +30,6 @@
                     </tr>
                 <?php endif; ?>
         </table>
-    </section>
+    </div>
     <?php require_once 'components/footer.php'; ?>
 </body>
-</html>
