@@ -1,10 +1,25 @@
 :root{
+    --color-white: #FFF;
+    --color-background-white: var(--color-white);
+    --color-background-gray: #F1F1F1;
+
+    --color-brand-secondary: #6E1F07;
+    --color-brand-primary: #DA3D04;
     --color-gray: #808080;
+    --color-dark: #2F2F2F;
     --color-border: #D9D9D9;
-    --color-text: #2f2f2f;
 
     --color-divider: var(--color-border);
 
-    --color-typography-nav-link-active: #da3d04;
-    --color-typography-nav-link-hover: #da3d04;
+
+    --color-typography-primary: var(--color-dark);
+    --color-typography-secondary: var(--color-gray);
+    --color-typography-brand-secondary: var(--color-brand-secondary);
+
+    --color-typography-nav-link-active: var(--color-brand-primary);
+    --color-typography-nav-link-hover: var(--color-brand-primary);
+    --color-typography-nav-link-default: var(--color-typography-secondary);
+
+    --color-typography-table-header: var(--color-typography-primary);
+    --color-typography-table-text: var(--color-typography-primary);
 }

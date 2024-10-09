@@ -3,17 +3,31 @@
 
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+}
+
 html {
-    background: white;
     font-family: "IBM Plex Sans", sans-serif;
+}
+
+body {
+    background-color: var(--color-background-white);
+}
+
+
+h1, h2, h3, h4, h5, h6, p {
+    color: var(--color-typography-primary);
     font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+a {
+    color: inherit;
+    text-decoration: inherit;
 }
 
 #root {
@@ -46,17 +60,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav__link {
-    text-decoration: none;
     font-size: 18px;
     line-height: 26px;
-    color: #010100;
+    color: var(--color-typography-nav-link-default);
     transition: color 0.5s;
 }
 
 .nav__link--active {
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 26px;
     color: var(--color-typography-nav-link-active);
 }
 
@@ -70,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 16px;
+    height: calc(100vh - 92px - 73px - 80px - 24px) ;
 }
 
 .home-content__label {
@@ -78,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 8px;
     padding: 8px 16px 8px 12px;
     border-radius: 24px;
-    background: #FAFAFA;
+    background-color: var(--color-background-gray);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12) inset;
 }
 
@@ -87,14 +98,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #GlobeIcon {
-    stroke: #6E1F07;
+    stroke: var(--color-brand-secondary);
 }
 
 .label__text{
     font-size: 16px;
     line-height: 24px;
     text-transform: uppercase;
-    color: #6E1F07;
+    color: var(--color-typography-brand-secondary);
 }
 
 .home-content__title {
@@ -109,14 +120,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer {
-    width: 100%;
     display: flex;
     justify-content: center;
     padding: 24px 0;
     border-top: 1px solid var(--color-border);
     font-size: 14px;
     line-height: 24px;
-    color: #808080;
+    color: var(--color-typography-secondary);
 }
 
 table {
@@ -132,17 +142,21 @@ th, td {
     font-size: 14px;
     line-height: 20px;
     text-align: left;
-    color: var(--color-text);
     padding: 12px 16px;
+}
+
+td {
+    color: var(--color-typography-table-text);
 }
 
 th {
     font-weight: 700;
-    background: #f3f3f3;
+    color: var(--color-typography-table-header);
+    background-color: var(--color-background-gray);
 }
 
 tr:hover {
-    background: #f3f3f3;
+    background: var(--color-background-gray);
 }
 
 .regions-table th:nth-last-child(-n+3),
