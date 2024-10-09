@@ -3,7 +3,8 @@
 require_once 'app/models/HomeModel.php';
 
 class HomeController {
-    public function index() {
+    public function index(): void
+    {
         $home = new HomeModel();
         $message = $home->getMessage();
 
