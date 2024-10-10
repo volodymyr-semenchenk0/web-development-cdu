@@ -9,7 +9,8 @@ class Region {
 
     public float $institutionsBy100000Population;
 
-    public function __construct($id, $region, $population, $higherEducationInstitutions) {
+    public function __construct($id, $region, $population, $higherEducationInstitutions)
+    {
         $this->id = $id;
         $this->name = $region;
         $this->population = $population;
@@ -17,16 +18,19 @@ class Region {
         $this->institutionsBy100000Population =$this->calcInstitutionsBy100000Population();
     }
 
-    private function calcInstitutionsBy100000Population(): float {
+    private function calcInstitutionsBy100000Population(): float
+    {
         return round($this->higherEducationInstitutions / ($this->population * 10000) * 1000000, 2);
     }
-    public function __toString() {
+    public function __toString()
+    {
         return "Region name is: " . $this->name ."; ".
             "Population in region is: " . $this->population ."; ".
             "Count of higher education institutions: " . $this->higherEducationInstitutions .";";
     }
 
-    public static function getAllRegionsFromFile($filePath) {
+    public static function getAllRegionsFromFile($filePath)
+    {
         $id = 0;
         $regions = array();
         $myFile = fopen($filePath, "r") or die("Unable to open file!");

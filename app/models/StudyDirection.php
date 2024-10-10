@@ -5,7 +5,8 @@ class StudyDirection
     private int $id;
     private string $directionName;
 
-    public function __construct($id,$directionName) {
+    public function __construct($id,$directionName)
+    {
         $this->id = $id;
         $this->directionName = $directionName;
     }
@@ -19,26 +20,9 @@ class StudyDirection
     {
         return $this->id;
     }
-    public static function getAllStudyDirectionsFromFile($filePath) {
-        $id = 0;
-        $directions = array();
-        $myFile = fopen($filePath, "r") or die("Unable to open file!");
 
-        while (!feof($myFile)) {
-            $name = trim(fgets($myFile));
-
-            if (!empty($name)) {
-                $id++;
-                $directions[] = new StudyDirection($id, $name);
-            }
-        }
-        fclose($myFile);
-
-        return $directions;
-    }
-
-    public static function sortByName(StudyDirection $a, StudyDirection $b): int
+    public static function compareDirectionsByName(StudyDirection $a, StudyDirection $b): int
     {
-        return $a->getDirectionName() <=> $b->getDirectionName();
+        return strcmp($a->directionName, $b->directionName);
     }
 }

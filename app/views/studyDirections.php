@@ -12,8 +12,7 @@
                 <?php if (!empty($studyDirections)) : ?>
                     <?php foreach ($studyDirections as $direction) : ?>
                     <div>
-                        <input class="form__radio-button"
-                               type="radio"
+                        <input type="radio"
                                id="<?=$direction->getId()?>"
                                name="studyDirection"
                                value="<?=$direction->getId()?>"
@@ -26,6 +25,7 @@
                 <?php else : ?>
                     <p>No regions found.</p>
                 <?php endif; ?>
+                <input type="submit" value="Search">
             </form>
         </div>
     </div>

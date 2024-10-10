@@ -193,7 +193,7 @@ input {
 }
 
 
-.form__radio-button {
+input[type="radio"] {
     margin-right: 8px;
     width: 20px;
     height: 20px;
@@ -202,13 +202,14 @@ input {
     transition: 0.2s all linear;
 }
 
-.form__radio-button:hover {
+input[type="radio"]:hover {
     border: 2px solid var(--color-component-radio-hover);
 }
 
-.form__radio-button:checked {
+input[type="radio"]:checked {
     border: 6px solid var(--color-component-radio-checked);
 }
+
 
 label {
     font-size: 16px;
