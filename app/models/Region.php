@@ -2,12 +2,12 @@
 
 class Region {
 
-    public $id;
-    public $name;
-    public $population;
-    public $higherEducationInstitutions;
+    public int $id;
+    public string $name;
+    public int $population;
+    public string $higherEducationInstitutions;
 
-    public $institutionsBy100000Population;
+    public float $institutionsBy100000Population;
 
     public function __construct($id, $region, $population, $higherEducationInstitutions) {
         $this->id = $id;

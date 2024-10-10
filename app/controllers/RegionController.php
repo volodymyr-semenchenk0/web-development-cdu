@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app/models/RegionModel.php';
+require_once 'app/models/Region.php';
 
 class RegionController
 {

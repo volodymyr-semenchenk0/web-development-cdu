@@ -3,6 +3,7 @@
         <a class="nav__link" href="/">home</a>
         <span class="nav__divider"></span>
         <a class="nav__link" href="/regions">lab-2</a>
+        <a class="nav__link" href="/study-directions">lab-3</a>
     </nav>
 </header>
 

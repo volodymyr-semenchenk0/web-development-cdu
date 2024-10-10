@@ -9,6 +9,7 @@
     --color-dark: #2F2F2F;
     --color-border: #D9D9D9;
 
+
     --color-divider: var(--color-border);
 
 
@@ -22,4 +23,9 @@
 
     --color-typography-table-header: var(--color-typography-primary);
     --color-typography-table-text: var(--color-typography-primary);
+
+    --color-component-radio-default: var(--color-border);
+    --color-component-radio-hover: var(--color-gray);
+    --color-component-radio-checked: var(--color-brand-primary);
+
 }

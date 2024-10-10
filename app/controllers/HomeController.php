@@ -1,11 +1,11 @@
 <?php
 
-require_once 'app/models/HomeModel.php';
+require_once 'app/models/Home.php';
 
 class HomeController {
     public function index(): void
     {
-        $home = new HomeModel();
+        $home = new Home();
         $message = $home->getMessage();
 
         if(empty($message)){
