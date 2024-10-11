@@ -11,7 +11,7 @@ html, body {
     min-height: 100%;
 }
 
-html {
+html, input {
     font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -190,6 +190,8 @@ input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    border: none;
+    background-color: inherit;
 }
 
 
@@ -199,7 +201,7 @@ input[type="radio"] {
     height: 20px;
     border-radius: 50%;
     border: 2px solid var(--color-component-radio-default);
-    transition: 0.2s all linear;
+    transition: 0.2s all ease-in-out;
 }
 
 input[type="radio"]:hover {
@@ -210,12 +212,33 @@ input[type="radio"]:checked {
     border: 6px solid var(--color-component-radio-checked);
 }
 
-input[type="submit"] {
+.button {
     font-size: 14px;
     line-height: 20px;
-
+    padding: 16px;
+    border-radius: 16px;
+    margin-top: 16px;
+    border: none;
 }
 
+.button__primary {
+    color: var(--color-typography-primary-reverse);
+    background-color: var(--color-component-submit-primary-default);
+    box-shadow: 0 0 12px 0 rgba(255, 255, 255, 0.50) inset;
+    transition: 0.5s all ease;
+}
+
+.button__primary:not(.button__primary--disabled):hover {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: var(--color-component-submit-primary-hover);
+    box-shadow: 0 0 12px 0 rgba(255, 255, 255, 0.50) inset;
+}
+
+.button__primary--disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
 
 label {
     font-size: 16px;

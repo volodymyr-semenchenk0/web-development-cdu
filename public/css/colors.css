@@ -14,6 +14,7 @@
 
 
     --color-typography-primary: var(--color-dark);
+    --color-typography-primary-reverse: var(--color-white);
     --color-typography-secondary: var(--color-gray);
     --color-typography-brand-secondary: var(--color-brand-secondary);
 
@@ -27,5 +28,8 @@
     --color-component-radio-default: var(--color-border);
     --color-component-radio-hover: var(--color-gray);
     --color-component-radio-checked: var(--color-brand-primary);
+
+    --color-component-submit-primary-default: var(--color-dark);
+    --color-component-submit-primary-hover: var(--color-brand-primary);
 
 }

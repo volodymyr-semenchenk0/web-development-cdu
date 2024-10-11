@@ -12,12 +12,10 @@ class StudyDirectionController
     public function index(): void
     {
         try {
-            $this->studyDirectionService->getDirectionsFromFile("storage/napr.txt");
             $this->studyDirectionService->sort();
-            $studyDirections = $this->studyDirectionService->getStudyDirections();
+            $studyDirectionTypes = $this->studyDirectionService->getStudyDirectionTypes();
 
-            // Pass the $studyDirections to the view
-            require_once 'app/views/studyDirections.php';
+            require_once 'app/views/studyDirectionTypes.php';
         } catch (Exception $e) {
             echo "An error occurred: " . $e->getMessage();
         }

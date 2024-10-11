@@ -7,25 +7,25 @@
     <div id="root">
         <h1>Study Directions</h1>
         <div class="directions-container">
-            <form class="directions-container__form">
+            <form class="directions-container__form" id="directions-form" method="post">
                 <p class="form__description">Please select study directions:</p>
-                <?php if (!empty($studyDirections)) : ?>
-                    <?php foreach ($studyDirections as $direction) : ?>
+                <?php if (!empty($studyDirectionTypes)) : ?>
+                    <?php foreach ($studyDirectionTypes as $directionType) : ?>
                     <div>
                         <input type="radio"
-                               id="<?=$direction->getId()?>"
+                               id="<?=$directionType->getId()?>"
                                name="studyDirection"
-                               value="<?=$direction->getId()?>"
+                               value="<?=$directionType->getId()?>"
                         />
-                        <label for="<?=$direction->getId()?>">
-                            <?=$direction->getDirectionName()?>
+                        <label for="<?=$directionType->getId()?>">
+                            <?=$directionType->getDirectionTypeName()?>
                         </label>
                     </div>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <p>No regions found.</p>
                 <?php endif; ?>
-                <input type="submit" value="Search">
+                <button class="button button__primary button__primary--disabled" id="submit-button"  type="submit" disabled>Search Information</button>
             </form>
         </div>
     </div>
