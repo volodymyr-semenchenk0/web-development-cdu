@@ -22,11 +22,6 @@ class HigherEducationInstitution
         $this->shortage = $contractStudentsCount < 0 ? abs($contractStudentsCount) : 0;
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
