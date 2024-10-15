@@ -2,20 +2,18 @@
 
 class StudyDirectionType
 {
-    private int $id;
     private string $directionTypeName;
     private string $hash;
 
-    public function __construct($id, $directionName)
+    public function __construct($directionName)
     {
-        $this->id = $id;
         $this->directionTypeName = $directionName;
         $this->hash = $this->generateHash($directionName);
     }
 
     public static function compareDirectionTypeByName(StudyDirectionType $a, StudyDirectionType $b): int
     {
-        return strcmp($a->directionTypeName, $b->directionTypeName);
+        return strcmp($a->getDirectionTypeName(), $b->getDirectionTypeName());
     }
 
     private function generateHash($value): string
@@ -31,11 +29,6 @@ class StudyDirectionType
     public function getDirectionTypeName(): string
     {
         return $this->directionTypeName;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     public function getHash(): string

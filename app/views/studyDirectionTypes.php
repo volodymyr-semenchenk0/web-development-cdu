@@ -7,17 +7,17 @@
     <div id="root">
         <h1>Study Directions</h1>
         <div class="directions-container">
-            <form class="directions-container__form" id="directions-form" method="post">
-                <p class="form__description">Please select study directions:</p>
+            <form class="directions-container__form" id="directions-form" method="post" action="/study-directions/institution-info">
+                <p class="directions-container__description">Please select study directions:</p>
                 <?php if (!empty($studyDirectionTypes)) : ?>
-                    <?php foreach ($studyDirectionTypes as $directionType) : ?>
+                    <?php foreach ($studyDirectionTypes as $key => $directionType) : ?>
                     <div>
                         <input type="radio"
-                               id="<?=$directionType->getId()?>"
+                               id="<?=$key?>"
                                name="studyDirection"
-                               value="<?=$directionType->getId()?>"
+                               value="<?=$directionType->getHAsh()?>"
                         />
-                        <label for="<?=$directionType->getId()?>">
+                        <label class="radio-label" for="<?=$key?>">
                             <?=$directionType->getDirectionTypeName()?>
                         </label>
                     </div>
