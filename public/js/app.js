@@ -1,8 +1,11 @@
 
 // change state of nav__link to active
-document.querySelectorAll('.nav__link').forEach(link => {
-    if (link.href === window.location.href) {
-        link.classList.add('nav__link--active');
+document.querySelectorAll('.link__header').forEach(link => {
+    const linkUrl = new URL(link.href);
+    const currentUrl = new URL(window.location.href);
+
+    if (linkUrl.pathname === currentUrl.pathname) {
+        link.classList.add('link__header--active');
     }
 });
 
@@ -15,13 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkRadioButtonSelection() {
         let isChecked = false;
         for (const radioButton of radioButtons) {
+            const card = radioButton.closest('.directions-container__radio-card'); // Get the parent card element
+
             if (radioButton.checked) {
                 isChecked = true;
-                break;
+                card.classList.add('directions-container__radio-card--checked'); // Add active state to the card
+            } else {
+                card.classList.remove('directions-container__radio-card--checked'); // Remove active state if not selected
             }
         }
 
-        if(isChecked) {
+        if (isChecked) {
             submitButton.disabled = false;
             submitButton.classList.remove('button__primary--disabled');
         }
@@ -31,5 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
         radioButton.addEventListener('change', checkRadioButtonSelection);
     }
 
-    checkRadioButtonSelection();
+    checkRadioButtonSelection(); // Initial call to set state on page load
 });

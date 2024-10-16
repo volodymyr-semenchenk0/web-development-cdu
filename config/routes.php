@@ -13,7 +13,7 @@ $routes = [
         'controller' => 'StudyDirectionController',
         'method' => 'index'
     ],
-    '/study-directions/institution-info' => [
+    '/study-directions/institution' => [
         'controller' => 'StudyDirectionController',
         'method' => 'getInstitutionInfo'
     ],

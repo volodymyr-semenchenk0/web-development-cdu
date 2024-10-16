@@ -11,7 +11,7 @@ html, body {
     min-height: 100%;
 }
 
-html, input {
+html, input, button, a {
     font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -21,13 +21,21 @@ body {
 
 
 h1, h2, h3, h4, h5, h6, p {
-    color: var(--color-typography-primary);
+    color: var(--color-typography-dark);
     font-weight: 400;
 }
 
 a {
     color: inherit;
     text-decoration: inherit;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
 }
 
 #root {
@@ -41,13 +49,13 @@ a {
     margin-right: auto;
 }
 
-.header {
+header {
     display: flex;
     padding: 16px 0;
     justify-content: center;
 }
 
-.header__nav {
+nav {
     display: flex;
     gap: 24px;
     padding: 16px 24px;
@@ -56,25 +64,14 @@ a {
     border-radius: 64px;
 }
 
-.nav__divider {
+.divider__header {
     height: 24px;
     width: 1px;
     background: var(--color-divider);
 }
 
-.nav__link {
-    font-size: 18px;
-    line-height: 26px;
-    color: var(--color-typography-nav-link-default);
-    transition: color 0.5s;
-}
-
-.nav__link--active {
-    color: var(--color-typography-nav-link-active);
-}
-
-.nav__link:hover {
-    color: var(--color-typography-nav-link-hover);
+.link.link__header--active {
+    color: var(--color-component-link-active);
 }
 
 .home-container {
@@ -83,7 +80,7 @@ a {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    height: calc(100vh - 92px - 73px - 80px - 24px) ;
+    height: calc(100vh - 92px - 73px - 80px - 24px);
 }
 
 .home-container__label {
@@ -129,17 +126,22 @@ a {
     border-top: 1px solid var(--color-border);
     font-size: 14px;
     line-height: 24px;
-    color: var(--color-typography-secondary);
+    color: var(--color-typography-gray);
+}
+
+.table-wrapper {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+
 }
 
 table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
+    border-style: hidden;
     border-radius: 16px;
-    border: 1px solid var(--color-border);
     padding-bottom: 8px;
-    overflow: hidden;
 }
 
 th, td {
@@ -154,23 +156,17 @@ td {
 }
 
 th {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-typography-table-header);
     background-color: var(--color-background-gray);
 }
 
+tr:not(:first-child) {
+    border-bottom: 1px solid var(--color-border-light);
+}
+
 tr:hover {
-    background: var(--color-background-gray);
-}
-
-.regions-table th:nth-last-child(-n+3),
-td:nth-last-child(-n+3) {
-    text-align: right;
-    width: 200px;
-}
-
-.regions-table td:nth-last-child(-n+3) {
-    font-family: monospace, monospace;
+    background-color: var(--color-background-white-hover);
 }
 
 .directions-container__form {
@@ -180,36 +176,10 @@ td:nth-last-child(-n+3) {
 }
 
 .directions-container {
-    padding: 48px;
+    padding: 24px;
     width: 100%;
     border-radius: 16px;
     border: 1px solid var(--color-border);
-}
-
-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    background-color: inherit;
-}
-
-
-input[type="radio"] {
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid var(--color-component-radio-default);
-    transition: 0.2s all ease-in-out;
-}
-
-input[type="radio"]:hover {
-    border: 2px solid var(--color-component-radio-hover);
-}
-
-input[type="radio"]:checked {
-    border: 6px solid var(--color-component-radio-checked);
 }
 
 .button {
@@ -217,12 +187,11 @@ input[type="radio"]:checked {
     line-height: 20px;
     padding: 16px;
     border-radius: 16px;
-    margin-top: 16px;
     border: none;
 }
 
 .button__primary {
-    color: var(--color-typography-primary-reverse);
+    color: var(--color-typography-white);
     background-color: var(--color-component-submit-primary-default);
     box-shadow: 0 0 12px 0 rgba(255, 255, 255, 0.50) inset;
     transition: 0.5s all ease;
@@ -240,13 +209,98 @@ input[type="radio"]:checked {
     cursor: not-allowed;
 }
 
-label {
-    font-size: 16px;
-    line-height: 24px;
+input[type="radio"] {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-component-radio-default);
+    flex-shrink: 0;
+    transition: 0.2s all ease;
+}
+
+input[type="radio"]:hover {
+    border: 2px solid var(--color-component-radio-hover);
+}
+
+input[type="radio"]:checked {
+    border: 6px solid var(--color-component-radio-checked);
+}
+
+.directions-container__radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.directions-container__radio-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-light);
+    background-color: var(--color-background-light-gray);
+    width: calc(50% - 4px);
+    transition: all 0.5s ease;
     cursor: pointer;
 }
 
+.directions-container__radio-card input[type="radio"]:checked + .directions-container__radio-label {
+    color: var(--color-typography-brand-primary);
+}
+
+
+.directions-container__radio-card:hover {
+    border-radius: 12px;
+    background-color: var(--color-background-light-gray-hover);
+}
+
+.directions-container__radio-card.directions-container__radio-card--checked {
+    border-radius: 12px;
+    border: 1px solid var(--color-border-primary);
+    background-color: var(   --color-background-brand-light);
+}
+
+
+.directions-container__radio-label {
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    color: var(--color-typography-dark);
+    transition: color 0.5s ease;
+}
+
 .form__description {
-    color: var(--color-typography-secondary);
+    color: var(--color-typography-gray);
     margin-bottom: 16px;
 }
+
+.link {
+    font-size: 18px;
+    line-height: 26px;
+    color: var(--color-component-link-default);
+    transition: color 0.5s ease;
+}
+
+.link:hover {
+    color: var(--color-component-link-hover);
+}
+
+.link.link_nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.link__icon {
+    display: flex;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--color-component-link-default);
+    transition: fill 0.5s ease;
+}
+
+

@@ -7,21 +7,21 @@
     <div id="root">
         <h1>Study Directions</h1>
         <div class="directions-container">
-            <form class="directions-container__form" id="directions-form" method="GET" action="/study-directions/institution-info">
-                <p class="directions-container__description">Please select study directions:</p>
+            <form class="directions-container__form" id="directions-form" method="GET" action="/study-directions/institution">
+                <p class="directions-container__description">Please select study direction type:</p>
                 <?php if (!empty($studyDirectionTypes)) : ?>
-                    <?php foreach ($studyDirectionTypes as $key => $directionType) : ?>
-                    <div>
-                        <input type="radio"
-                               id="<?=$key?>"
-                               name="studyDirectionId"
-                               value="<?=$key?>"
-                        />
-                        <label class="radio-label" for="<?=$key?>">
-                            <?=$directionType->getDirectionTypeName()?>
-                        </label>
+                    <div class="directions-container__radio-group">
+                        <?php foreach ($studyDirectionTypes as $key => $directionType) : ?>
+                            <label class="directions-container__radio-card" for="<?=$key?>">
+                                <input type="radio"
+                                       id="<?=$key?>"
+                                       name="studyDirectionId"
+                                       value="<?=$key?>"
+                                />
+                                <span class="directions-container__radio-label"><?=$directionType->getDirectionTypeName()?></span>
+                            </label>
+                        <?php endforeach; ?>
                     </div>
-                    <?php endforeach; ?>
                 <?php else : ?>
                     <p>No regions found.</p>
                 <?php endif; ?>

@@ -1,29 +1,37 @@
 :root{
-    --color-white: #FFF;
-    --color-background-white: var(--color-white);
-    --color-background-gray: #F1F1F1;
-
     --color-brand-secondary: #6E1F07;
     --color-brand-primary: #DA3D04;
+    --color-brand-light: #fff4ee;
+    --color-ligh-gray: #FAFAFAFF;
     --color-gray: #808080;
     --color-dark: #2F2F2F;
+    --color-white: #FFF;
+
+    --color-background-white: var(--color-white);
+    --color-background-gray: #F1F1F1;
+    --color-background-light-gray:  var(--color-ligh-gray);
+    --color-background-light-gray-hover: #EEEEEE;
+    --color-background-white-hover: var(--color-ligh-gray);
+    --color-background-brand-light: var( --color-brand-light);
+
     --color-border: #D9D9D9;
-
-
+    --color-border-light: #efefef;
+    --color-border-primary: var(--color-brand-primary);
     --color-divider: var(--color-border);
 
 
-    --color-typography-primary: var(--color-dark);
-    --color-typography-primary-reverse: var(--color-white);
-    --color-typography-secondary: var(--color-gray);
+    --color-typography-dark: var(--color-dark);
+    --color-typography-white: var(--color-white);
+    --color-typography-gray: var(--color-gray);
+    --color-typography-brand-primary: var(--color-brand-primary);
     --color-typography-brand-secondary: var(--color-brand-secondary);
 
-    --color-typography-nav-link-active: var(--color-brand-primary);
-    --color-typography-nav-link-hover: var(--color-brand-primary);
-    --color-typography-nav-link-default: var(--color-typography-secondary);
+    --color-component-link-active: var(--color-brand-primary);
+    --color-component-link-hover: var(--color-brand-primary);
+    --color-component-link-default: var(--color-typography-gray);
 
-    --color-typography-table-header: var(--color-typography-primary);
-    --color-typography-table-text: var(--color-typography-primary);
+    --color-typography-table-header: var(--color-typography-dark);
+    --color-typography-table-text: var(--color-typography-dark);
 
     --color-component-radio-default: var(--color-border);
     --color-component-radio-hover: var(--color-gray);
@@ -31,5 +39,8 @@
 
     --color-component-submit-primary-default: var(--color-dark);
     --color-component-submit-primary-hover: var(--color-brand-primary);
+
+    --color-component-icon-default: var(--color-dark);
+
 
 }

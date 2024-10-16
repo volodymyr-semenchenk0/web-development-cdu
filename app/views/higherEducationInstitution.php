@@ -5,34 +5,43 @@ require_once 'components/head.php';
 <body>
 <?php require_once 'components/header.php'; ?>
 <div id="root">
-    <a href="/study-directions">Choose Another Type</a>
+    <a href="/study-directions" class="link link_nav">
+            <span class="link__icon">
+                <svg class="icon" id="ic_left-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="currentColor"/>
+                </svg>
+            </span>
+        Choose Another Type
+    </a>
     <h1><?= isset($institutionDirectionType) ? $institutionDirectionType->getDirectionTypeName() : 'Unknown Study Direction' ?></h1>
-    <table class="institution-table">
-        <tr>
-            <th>#</th>
-            <th>Середній бал вступивших на бюджет</th>
-            <th>Число поступивших на бюджет</th>
-            <th>Недобір</th>
-            <th>Кількість контрактників</th>
-            <th>Назва ВУЗа</th>
-        </tr>
-        <?php if (!empty($institutionsList)) : ?>
-            <?php foreach ($institutionsList as $key => $institution) : ?>
-                <tr>
-                    <td><?= $key?></td>
-                    <td><?= $institution->getBudgetStateAverageMark() ?></td>
-                    <td><?= $institution->getBudgetStudentsCount() ?></td>
-                    <td><?= $institution->getShortage() ?></td>
-                    <td><?= $institution->getContractStudentsCount() ?></td>
-                    <td><?= $institution->getName() ?></td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else : ?>
+    <div class="table-wrapper">
+        <table class="institution-table">
             <tr>
-                <td colspan="3">No regions found.</td>
+                <th>#</th>
+                <th>Середній бал вступивших на бюджет</th>
+                <th>Число поступивших на бюджет</th>
+                <th>Недобір</th>
+                <th>Кількість контрактників</th>
+                <th>Назва ВУЗа</th>
             </tr>
-        <?php endif; ?>
-    </table>
+            <?php if (!empty($institutionsList)) : ?>
+                <?php foreach ($institutionsList as $key => $institution) : ?>
+                    <tr>
+                        <td><?= $key?></td>
+                        <td><?= $institution->getBudgetStateAverageMark() ?></td>
+                        <td><?= $institution->getBudgetStudentsCount() ?></td>
+                        <td><?= $institution->getShortage() ?></td>
+                        <td><?= $institution->getContractStudentsCount() ?></td>
+                        <td><?= $institution->getName() ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="3">No regions found.</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+    </div>
 </div>
 <?php require_once 'components/footer.php'; ?>
 </body>
