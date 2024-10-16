@@ -15,6 +15,6 @@ $routes = [
     ],
     '/study-directions/institution-info' => [
         'controller' => 'StudyDirectionController',
-        'method' => 'getDirectionInfo'
+        'method' => 'getInstitutionInfo'
     ],
 ];

@@ -10,7 +10,7 @@ document.querySelectorAll('.nav__link').forEach(link => {
 // enable submit-button
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit-button');
-    const radioButtons = document.querySelectorAll('input[name="studyDirection"]');
+    const radioButtons = document.querySelectorAll('input[name="studyDirectionId"]');
 
     function checkRadioButtonSelection() {
         let isChecked = false;

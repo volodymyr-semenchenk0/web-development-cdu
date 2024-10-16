@@ -51,12 +51,12 @@ class HigherEducationInstitutionService
         );
     }
 
-    public function getInstitutionByDirectionHash($studyDirectionHash) : ?StudyDirectionsCollection
+    public function getInstitutionByDirection(StudyDirectionType $studyDirection) : ?StudyDirectionsCollection
     {
         $studyDirectionObject = null;
         foreach ($this->studyDirectionsCollection as $collectionItem)
         {
-            if ($collectionItem->getStudyDirectionType()->getHash() === $studyDirectionHash)
+            if ($collectionItem->getStudyDirectionType()->getHash() === $studyDirection->getHash())
             {
                 $studyDirectionObject = $collectionItem;
                 break;

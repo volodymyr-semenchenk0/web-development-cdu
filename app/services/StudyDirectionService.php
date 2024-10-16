@@ -32,16 +32,4 @@ class StudyDirectionService
     {
         return $this->studyDirectionTypes;
     }
-
-    public function findStudyDirectionTypeByHash($studyDirectionHash) : StudyDirectionType
-    {
-        $studyDirectionType = null;
-        foreach ($this->studyDirectionTypes as $directionType) {
-            if ($directionType->getHash() === $studyDirectionHash) {
-                $studyDirectionType = $directionType;
-                break;
-            }
-        }
-        return $studyDirectionType;
-    }
 }
