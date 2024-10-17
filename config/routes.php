@@ -7,7 +7,7 @@ $routes = [
     ],
     '/regions' => [
         'controller' => 'RegionController',
-        'method' => 'index'
+        'method' => 'getRegions'
     ],
     '/study-directions' => [
         'controller' => 'StudyDirectionController',

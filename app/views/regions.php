@@ -16,13 +16,13 @@
                         <th>Кільк. навчальних закладів на 100тис. насалення</th>
                     </tr>
                     <?php if (!empty($regions)) : ?>
-                        <?php foreach ($regions as $regionData) : ?>
+                        <?php foreach ($regions as $key => $region) : ?>
                             <tr>
-                                <td><?= $regionData->id ?></td>
-                                <td><?= $regionData->name ?></td>
-                                <td><?= $regionData->population ?></td>
-                                <td><?= $regionData->higherEducationInstitutions ?></td>
-                                <td><?= $regionData->institutionsBy100000Population ?></td>
+                                <td><?= $key ?></td>
+                                <td><?= $region->getName() ?></td>
+                                <td><?= $region->getPopulation() ?></td>
+                                <td><?= $region->getHigherEducationInstitutions() ?></td>
+                                <td><?= $region->getInstitutionsBy100000Population() ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else : ?>

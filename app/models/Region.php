@@ -1,17 +1,13 @@
 <?php
 
 class Region {
+    private string $name;
+    private int $population;
+    private string $higherEducationInstitutions;
+    private float $institutionsBy100000Population;
 
-    public int $id;
-    public string $name;
-    public int $population;
-    public string $higherEducationInstitutions;
-
-    public float $institutionsBy100000Population;
-
-    public function __construct($id, $region, $population, $higherEducationInstitutions)
+    public function __construct( $region, $population, $higherEducationInstitutions)
     {
-        $this->id = $id;
         $this->name = $region;
         $this->population = $population;
         $this->higherEducationInstitutions = $higherEducationInstitutions;
@@ -22,31 +18,31 @@ class Region {
     {
         return round($this->higherEducationInstitutions / ($this->population * 10000) * 1000000, 2);
     }
-    public function __toString()
+
+    /*    public function __toString()
     {
         return "Region name is: " . $this->name ."; ".
             "Population in region is: " . $this->population ."; ".
             "Count of higher education institutions: " . $this->higherEducationInstitutions .";";
+    }*/
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
-    public static function getAllRegionsFromFile($filePath)
+    public function getPopulation(): int
     {
-        $id = 0;
-        $regions = array();
-        $myFile = fopen($filePath, "r") or die("Unable to open file!");
+        return $this->population;
+    }
 
-        while (!feof($myFile)) {
-            $name = trim(fgets($myFile));
-            $population = trim(fgets($myFile));
-            $higherEducationInstitutions = trim(fgets($myFile));
+    public function getHigherEducationInstitutions(): string
+    {
+        return $this->higherEducationInstitutions;
+    }
 
-            if (!empty($name) && !empty($population) && !empty($higherEducationInstitutions)) {
-                $id++;
-                $regions[] = new Region($id, $name, $population, $higherEducationInstitutions);
-            }
-        }
-        fclose($myFile);
-
-        return $regions;
+    public function getInstitutionsBy100000Population(): float
+    {
+        return $this->institutionsBy100000Population;
     }
 }
