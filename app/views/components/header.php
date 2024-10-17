@@ -1,8 +1,9 @@
-<header class="header">
-    <nav class="header__nav">
-        <a class="nav__link" href="/">home</a>
-        <span class="nav__divider"></span>
-        <a class="nav__link" href="/regions">lab-2</a>
+<header>
+    <nav>
+        <a class="link link__header" href="/">home</a>
+        <span class="link divider__header"></span>
+        <a class="link link__header" href="/regions">lab-2</a>
+        <a class="link link__header" href="/study-directions">lab-3</a>
     </nav>
 </header>
 
