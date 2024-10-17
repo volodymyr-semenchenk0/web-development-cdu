@@ -17,22 +17,18 @@ class StudyDirectionController
 
     public function index(): void
     {
-        $this->prepareStudyDirectionTypes();
-        $studyDirectionTypes = $this->studyDirectionService->getStudyDirectionTypes();
-
+        $studyDirectionTypes = $this->prepareStudyDirectionTypes();
         require_once 'app/views/studyDirectionTypes.php';
     }
 
     public function getInstitutionInfo(): void
     {
         $response = $_GET['studyDirectionId'] ?? '';
+        $studyDirectionTypes = $this->prepareStudyDirectionTypes();
 
-        if (isset($response) && $response !== "") {
-            $this->prepareStudyDirectionTypes();
-            $studyDirection = $this->studyDirectionService->getStudyDirectionTypes()[$response];
-
+        if (isset($response) && $response !== "" && array_key_exists($response, $studyDirectionTypes)) {
             $this->higherEducationInstitutionService->readInstitutionsByTypeFromFile(self::HIGHER_INSTITUTIONS_FILEPATH);
-            $institution = $this->higherEducationInstitutionService->getInstitutionByDirection($studyDirection);
+            $institution = $this->higherEducationInstitutionService->getInstitutionByDirection($studyDirectionTypes[$response]);
 
             $institutionDirectionType = $institution->getStudyDirectionType();
             $institutionsList = $institution->getHigherStudyInstitutions();
@@ -45,9 +41,10 @@ class StudyDirectionController
         }
     }
 
-    private function prepareStudyDirectionTypes(): void
+    private function prepareStudyDirectionTypes(): array
     {
         $this->studyDirectionService->readStudyDirectionTypesFromFile(self::DIRECTION_TYPES_FILEPATH);
         $this->studyDirectionService->sortByStudyDirectionTypeName();
+        return $this->studyDirectionService->getStudyDirectionTypes();
     }
 }
