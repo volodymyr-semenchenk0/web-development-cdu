@@ -7,14 +7,22 @@ $routes = [
     ],
     '/regions' => [
         'controller' => 'RegionController',
-        'method' => 'getRegions'
+        'method' => 'displayRegions'
     ],
     '/study-directions' => [
         'controller' => 'StudyDirectionController',
-        'method' => 'index'
+        'method' => 'displayStudyDirectionTypes'
     ],
     '/study-directions/institution' => [
         'controller' => 'StudyDirectionController',
-        'method' => 'getInstitutionInfo'
+        'method' => 'displayInstitutionInfo'
+    ],
+    '/region' => [
+        'controller' => 'RegionController',
+        'method' => 'gerRegionsNames'
+    ],
+    '/region/info' => [
+        'controller' => 'RegionController',
+        'method' => 'displayRegions'
     ],
 ];

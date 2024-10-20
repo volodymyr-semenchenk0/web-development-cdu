@@ -133,15 +133,13 @@ nav {
     border: 1px solid var(--color-border);
     border-radius: 16px;
     overflow: hidden;
-
+    padding-bottom: 8px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     border-style: hidden;
-    border-radius: 16px;
-    padding-bottom: 8px;
 }
 
 th, td {
@@ -301,6 +299,12 @@ input[type="radio"]:checked {
     height: 20px;
     fill: var(--color-component-link-default);
     transition: fill 0.5s ease;
+}
+
+select {
+    padding: 16px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 16px;
 }
 
 

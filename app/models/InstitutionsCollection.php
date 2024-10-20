@@ -1,6 +1,6 @@
 <?php
 
-class StudyDirectionsCollection
+class InstitutionsCollection
 {
     private StudyDirectionType $studyDirectionType;
 
