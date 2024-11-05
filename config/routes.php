@@ -19,10 +19,14 @@ $routes = [
     ],
     '/region' => [
         'controller' => 'RegionController',
-        'method' => 'gerRegionsNames'
+        'method' => 'getRegionsNames'
     ],
     '/region/info' => [
         'controller' => 'RegionController',
         'method' => 'displayRegions'
+    ],
+    '/weather' => [
+        'controller' => 'WeatherController',
+        'method' => 'displayCityWeather'
     ],
 ];

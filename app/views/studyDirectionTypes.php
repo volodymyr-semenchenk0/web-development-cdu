@@ -10,14 +10,16 @@
             <form class="directions-container__form" id="directions-form" method="GET" action="/study-directions/institution">
                 <p class="directions-container__description">Please select study direction type:</p>
                 <div class="directions-container__radio-group">
-                    <?php foreach ($this->getStudyDirectionTypes() as $key => $directionType) : ?>
+                    <?php foreach ($this->studyDirectionTypes as $key => $directionType) : ?>
                         <label class="directions-container__radio-card" for="<?=$key?>">
                             <input type="radio"
                                    id="<?=$key?>"
                                    name="studyDirectionId"
                                    value="<?=$key?>"
                             />
-                            <span class="directions-container__radio-label"><?=$directionType->getDirectionTypeName()?></span>
+                            <span class="directions-container__radio-label">
+                                <?=$directionType->getDirectionTypeName()?>
+                            </span>
                         </label>
                     <?php endforeach; ?>
                 </div>

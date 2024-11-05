@@ -5,6 +5,7 @@
         <a class="link link__header" href="/regions">lab-2</a>
         <a class="link link__header" href="/study-directions">lab-3</a>
         <a class="link link__header" href="/region">lab-4</a>
+        <a class="link link__header" href="/weather">lab-5</a>
     </nav>
 </header>
 

@@ -13,7 +13,7 @@ require_once 'components/head.php';
             </span>
         Choose Another Type
     </a>
-    <h1><?= $this->selectedIstitution->getStudyDirectionType()->getDirectionTypeName() ?></h1>
+    <h1><?= $this->selectedInstitution->getStudyDirectionType()->getDirectionTypeName() ?></h1>
     <div class="table-wrapper">
         <table class="institution-table">
             <tr>
@@ -24,7 +24,7 @@ require_once 'components/head.php';
                 <th>Кількість контрактників</th>
                 <th>Назва ВУЗа</th>
             </tr>
-            <?php foreach ($this->selectedIstitution->getHigherStudyInstitutions() as $key => $institution) : ?>
+            <?php foreach ($this->selectedInstitution->getHigherStudyInstitutions() as $key => $institution) : ?>
                 <tr>
                     <td><?= $key?></td>
                     <td><?= $institution->getBudgetStateAverageMark() ?></td>

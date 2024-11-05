@@ -4,11 +4,12 @@ require_once 'app/models/StudyDirectionType.php';
 
 class StudyDirectionService
 {
+    private const string DIRECTION_TYPES_FILEPATH = "storage/study_direction_types.txt";
     private array $studyDirectionTypes = [];
-    public function readStudyDirectionTypesFromFile($filePath) : void
+    public function readStudyDirectionTypesFromFile() : void
     {
         try {
-            $myFile = fopen($filePath, "r");
+            $myFile = fopen(self::DIRECTION_TYPES_FILEPATH, "r");
 
             while (!feof($myFile)) {
                 $line = trim(fgets($myFile));

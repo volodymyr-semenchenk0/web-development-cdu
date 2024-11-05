@@ -23,7 +23,7 @@ class RegionController
         }
         require_once 'app/views/regionsList.php';
     }
-    public function gerRegionsNames() : void
+    public function getRegionsNames() : void
     {
         require_once 'app/views/regionSearch.php';
     }
@@ -32,5 +32,4 @@ class RegionController
     {
         return $this->regions;
     }
-
 }

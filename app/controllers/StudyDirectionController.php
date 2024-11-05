@@ -8,11 +8,7 @@ class StudyDirectionController
     private StudyDirectionService $studyDirectionService;
     private HigherEducationInstitutionService $higherEducationInstitutionService;
     private array $studyDirectionTypes = [];
-    private InstitutionsCollection $selectedIstitution;
-
-    private StudyDirectionType $institutionDirectionType;
-    private const string DIRECTION_TYPES_FILEPATH = "storage/study_direction_types.txt";
-    private const string HIGHER_INSTITUTIONS_FILEPATH = "storage/study_directions_info.txt";
+    private InstitutionsCollection $selectedInstitution;
 
     public function __construct() {
         $this->higherEducationInstitutionService = new HigherEducationInstitutionService();
@@ -31,8 +27,11 @@ class StudyDirectionController
         $response = $_GET['studyDirectionId'] ?? '';
 
         if (isset($response) && $response !== "" && array_key_exists($response, $this->studyDirectionTypes)) {
-            $this->higherEducationInstitutionService->readInstitutionsByTypeFromFile(self::HIGHER_INSTITUTIONS_FILEPATH);
-            $this->selectedIstitution = $this->higherEducationInstitutionService->getInstitutionByDirection($this->studyDirectionTypes[$response]);
+            $this->higherEducationInstitutionService->
+            readInstitutionsByTypeFromFile();
+            $this->selectedInstitution =
+                $this->higherEducationInstitutionService->
+                getInstitutionByDirection($this->studyDirectionTypes[$response]);
 
             require_once 'app/views/higherEducationInstitution.php';
         }
@@ -44,18 +43,8 @@ class StudyDirectionController
 
     private function prepareStudyDirectionTypes(): array
     {
-        $this->studyDirectionService->readStudyDirectionTypesFromFile(self::DIRECTION_TYPES_FILEPATH);
+        $this->studyDirectionService->readStudyDirectionTypesFromFile();
         $this->studyDirectionService->sortByStudyDirectionTypeName();
         return $this->studyDirectionService->getStudyDirectionTypes();
-    }
-
-    public function getStudyDirectionTypes() :array
-    {
-        return $this->studyDirectionTypes;
-    }
-
-    public function getSelectedInstitution(): InstitutionsCollection
-    {
-        return $this->selectedIstitution;
     }
 }
