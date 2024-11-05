@@ -19,13 +19,6 @@ class Region {
         return round($this->higherEducationInstitutions / ($this->population * 10000) * 1000000, 2);
     }
 
-    /*    public function __toString()
-    {
-        return "Region name is: " . $this->name ."; ".
-            "Population in region is: " . $this->population ."; ".
-            "Count of higher education institutions: " . $this->higherEducationInstitutions .";";
-    }*/
-
     public function getName(): string
     {
         return $this->name;

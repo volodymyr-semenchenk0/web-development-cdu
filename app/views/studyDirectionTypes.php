@@ -9,22 +9,18 @@
         <div class="directions-container">
             <form class="directions-container__form" id="directions-form" method="GET" action="/study-directions/institution">
                 <p class="directions-container__description">Please select study direction type:</p>
-                <?php if (!empty($studyDirectionTypes)) : ?>
-                    <div class="directions-container__radio-group">
-                        <?php foreach ($studyDirectionTypes as $key => $directionType) : ?>
-                            <label class="directions-container__radio-card" for="<?=$key?>">
-                                <input type="radio"
-                                       id="<?=$key?>"
-                                       name="studyDirectionId"
-                                       value="<?=$key?>"
-                                />
-                                <span class="directions-container__radio-label"><?=$directionType->getDirectionTypeName()?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else : ?>
-                    <p>No regions found.</p>
-                <?php endif; ?>
+                <div class="directions-container__radio-group">
+                    <?php foreach ($this->getStudyDirectionTypes() as $key => $directionType) : ?>
+                        <label class="directions-container__radio-card" for="<?=$key?>">
+                            <input type="radio"
+                                   id="<?=$key?>"
+                                   name="studyDirectionId"
+                                   value="<?=$key?>"
+                            />
+                            <span class="directions-container__radio-label"><?=$directionType->getDirectionTypeName()?></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
                 <button class="button button__primary button__primary--disabled" id="submit-button"  type="submit" disabled>Search Information</button>
             </form>
         </div>

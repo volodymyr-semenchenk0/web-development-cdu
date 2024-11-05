@@ -1,5 +1,5 @@
 <?php
-$title = "Study Directions";
+$title = "Higher Education Institution";
 require_once 'components/head.php';
 ?>
 <body>
@@ -13,7 +13,7 @@ require_once 'components/head.php';
             </span>
         Choose Another Type
     </a>
-    <h1><?= isset($institutionDirectionType) ? $institutionDirectionType->getDirectionTypeName() : 'Unknown Study Direction' ?></h1>
+    <h1><?= $this->selectedIstitution->getStudyDirectionType()->getDirectionTypeName() ?></h1>
     <div class="table-wrapper">
         <table class="institution-table">
             <tr>
@@ -24,22 +24,16 @@ require_once 'components/head.php';
                 <th>Кількість контрактників</th>
                 <th>Назва ВУЗа</th>
             </tr>
-            <?php if (!empty($institutionsList)) : ?>
-                <?php foreach ($institutionsList as $key => $institution) : ?>
-                    <tr>
-                        <td><?= $key?></td>
-                        <td><?= $institution->getBudgetStateAverageMark() ?></td>
-                        <td><?= $institution->getBudgetStudentsCount() ?></td>
-                        <td><?= $institution->getShortage() ?></td>
-                        <td><?= $institution->getContractStudentsCount() ?></td>
-                        <td><?= $institution->getName() ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else : ?>
+            <?php foreach ($this->selectedIstitution->getHigherStudyInstitutions() as $key => $institution) : ?>
                 <tr>
-                    <td colspan="3">No regions found.</td>
+                    <td><?= $key?></td>
+                    <td><?= $institution->getBudgetStateAverageMark() ?></td>
+                    <td><?= $institution->getBudgetStudentsCount() ?></td>
+                    <td><?= $institution->getShortage() ?></td>
+                    <td><?= $institution->getContractStudentsCount() ?></td>
+                    <td><?= $institution->getName() ?></td>
                 </tr>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </table>
     </div>
 </div>

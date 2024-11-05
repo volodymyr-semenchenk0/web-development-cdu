@@ -2,7 +2,7 @@
 
 require_once 'app/models/StudyDirectionType.php';
 require_once 'app/models/HigherEducationInstitution.php';
-require_once 'app/models/StudyDirectionsCollection.php';
+require_once 'app/models/InstitutionsCollection.php';
 
 class HigherEducationInstitutionService
 {
@@ -16,7 +16,7 @@ class HigherEducationInstitutionService
             while (!feof($myFile)) {
                 $studyDirectionTypeLine = trim(fgets($myFile));
                 if (!empty($studyDirectionTypeLine)) {
-                    $collectionItem =  new StudyDirectionsCollection(
+                    $collectionItem =  new InstitutionsCollection(
                         new StudyDirectionType($studyDirectionTypeLine)
                     );
                     $this->studyDirectionsCollection[] = $collectionItem;
@@ -51,7 +51,7 @@ class HigherEducationInstitutionService
         );
     }
 
-    public function getInstitutionByDirection(StudyDirectionType $studyDirection) : ?StudyDirectionsCollection
+    public function getInstitutionByDirection(StudyDirectionType $studyDirection) : ?InstitutionsCollection
     {
         $studyDirectionObject = null;
         foreach ($this->studyDirectionsCollection as $collectionItem)
