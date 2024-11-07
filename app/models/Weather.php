@@ -3,21 +3,23 @@
 class Weather
 {
     private string $cityName;
-    private DateTime $currentDate;
-    private string $sunsetTime;
-    private string $sunriseTime;
-    private string $dayLightDuration;
-    private string $dayLightTime;
+    private DayLight $lightDay;
     private array $weatherDataListPerDay = [];
 
-    public function __construct(string $cityName)
+    public function __construct(string $cityName, DayLight $lightDay)
     {
         $this->cityName = $cityName;
+        $this->lightDay = $lightDay;
     }
 
     public function getCityName(): string
     {
         return $this->cityName;
+    }
+
+    public function getLightDay(): DayLight
+    {
+        return $this->lightDay;
     }
 
     private function initiateWeatherHoursPerDay()

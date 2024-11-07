@@ -1,6 +1,7 @@
 <?php
 
 require_once 'app/models/Weather.php';
+require_once 'app/models/DayLight.php';
 
 class WeatherService
 {
@@ -25,10 +26,30 @@ class WeatherService
         @$dom->loadHTML($response);
         $xpath = new DOMXPath($dom);
 
-        $cityName = $xpath->query("//div[@class='page-title']/h1")->item(0)->nodeValue;
+        $cityName = $this->getCityName($xpath);
+//        $sunriseTime = $this->getSunriseTime($xpath, 'Схід');
+//        $sunsetTime = $this->getSunriseTime($xpath, 'Захід');
 
-        $this->weather = new Weather($cityName);
+        $sunriseTime = '4:00';
+        $sunsetTime = '5:01';
+        $dayLight = new DayLight($sunriseTime, $sunsetTime);
 
 
+
+        $this->weather = new Weather($cityName, $dayLight);
+    }
+
+    private function getCityName($xpath) : string
+    {
+         return $xpath->query("//div[@class='page-title']/h1")->item(0)->nodeValue;
+    }
+
+    private function getSunriseTime($xpath, $periodName) : string
+    {
+        $sunriseNode = $xpath->query("//div[@class='astro-times']/div[contains(text(), '$periodName')]");
+        $sunriseText = $sunriseNode->item(0)->nodeValue;
+
+        preg_match('/' . $periodName . ' — ([0-9]{1,2}:[0-9]{2})/', $sunriseText, $matches);
+        return $matches[1];
     }
 }

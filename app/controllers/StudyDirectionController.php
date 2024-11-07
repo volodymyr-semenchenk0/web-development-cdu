@@ -8,7 +8,7 @@ class StudyDirectionController
     private StudyDirectionService $studyDirectionService;
     private HigherEducationInstitutionService $higherEducationInstitutionService;
     private array $studyDirectionTypes = [];
-    private InstitutionsCollection $selectedInstitution;
+    public InstitutionsCollection $selectedInstitution;
 
     public function __construct() {
         $this->higherEducationInstitutionService = new HigherEducationInstitutionService();

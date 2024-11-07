@@ -4,12 +4,11 @@ require_once 'app/services/WeatherService.php';
 
 class WeatherController
 {
-    private array $weatherList = [];
+    public array $weatherList = [];
     private WeatherService $weatherService;
 
     public function __construct() {
         $this->weatherService = new WeatherService();
-
     }
 
     public function displayCityWeather() : void
