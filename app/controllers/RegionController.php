@@ -1,7 +1,8 @@
 <?php
 
-require_once 'app/models/Region.php';
-require_once 'app/services/RegionService.php';
+namespace App\Controllers;
+
+use App\Services\RegionService;
 
 class RegionController
 {

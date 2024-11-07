@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class InstitutionsCollection
 {
     private StudyDirectionType $studyDirectionType;

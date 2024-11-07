@@ -1,7 +1,13 @@
 <?php
 
-require_once 'app/models/Weather.php';
-require_once 'app/models/DayLight.php';
+namespace App\Services;
+
+use DOMDocument;
+use DOMXPath;
+use App\Models\
+{
+    Weather, DayLight
+};
 
 class WeatherService
 {
@@ -27,16 +33,16 @@ class WeatherService
         $xpath = new DOMXPath($dom);
 
         $cityName = $this->getCityName($xpath);
-//        $sunriseTime = $this->getSunriseTime($xpath, 'Схід');
-//        $sunsetTime = $this->getSunriseTime($xpath, 'Захід');
+        $sunriseTime = $this->getSunriseTime($xpath, 'Схід');
+        $sunsetTime = $this->getSunriseTime($xpath, 'Захід');
 
-        $sunriseTime = '4:00';
-        $sunsetTime = '5:01';
+//        $sunriseTime = '4:00';
+//        $sunsetTime = '5:00';
         $dayLight = new DayLight($sunriseTime, $sunsetTime);
 
 
 
-        $this->weather = new Weather($cityName, $dayLight);
+        $this->weather = new Weather($cityName, $dayLight, 'Чт, 7 лис');
     }
 
     private function getCityName($xpath) : string

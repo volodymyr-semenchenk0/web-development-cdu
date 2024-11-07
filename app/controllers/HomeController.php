@@ -1,6 +1,8 @@
 <?php
 
-require_once 'app/models/Home.php';
+namespace App\Controllers;
+
+use App\Models\Home;
 
 class HomeController {
     public function index(): void

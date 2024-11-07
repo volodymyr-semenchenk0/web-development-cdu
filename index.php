@@ -1,5 +1,6 @@
 <?php
 
+require_once 'vendor/autoload.php';
 require_once 'config/routes.php';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -7,9 +8,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 if (isset($routes[$uri])) {
     $controllerName = $routes[$uri]['controller'];
     $methodName = $routes[$uri]['method'];
-
-    // Include the controller file
-    require_once "app/controllers/$controllerName.php";
 
     // Instantiate the controller and call the method
     $controller = new $controllerName();

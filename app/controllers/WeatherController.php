@@ -1,6 +1,8 @@
 <?php
 
-require_once 'app/services/WeatherService.php';
+namespace App\Controllers;
+
+use App\Services\WeatherService;
 
 class WeatherController
 {

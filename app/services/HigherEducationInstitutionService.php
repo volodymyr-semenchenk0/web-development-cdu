@@ -1,5 +1,15 @@
 <?php
 
+namespace App\Services;
+
+use App\Models\
+{
+    HigherEducationInstitution,
+    InstitutionsCollection,
+    StudyDirectionType
+};
+use Exception;
+
 require_once 'app/models/StudyDirectionType.php';
 require_once 'app/models/HigherEducationInstitution.php';
 require_once 'app/models/InstitutionsCollection.php';

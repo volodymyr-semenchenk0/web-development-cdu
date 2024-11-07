@@ -2,31 +2,31 @@
 
 $routes = [
     '/' => [
-        'controller' => 'HomeController',
+        'controller' => 'App\Controllers\HomeController',
         'method' => 'index'
     ],
     '/regions' => [
-        'controller' => 'RegionController',
+        'controller' => 'App\Controllers\RegionController',
         'method' => 'displayRegions'
     ],
     '/study-directions' => [
-        'controller' => 'StudyDirectionController',
+        'controller' => 'App\Controllers\StudyDirectionController',
         'method' => 'displayStudyDirectionTypes'
     ],
     '/study-directions/institution' => [
-        'controller' => 'StudyDirectionController',
+        'controller' => 'App\Controllers\StudyDirectionController',
         'method' => 'displayInstitutionInfo'
     ],
     '/region' => [
-        'controller' => 'RegionController',
+        'controller' => 'App\Controllers\RegionController',
         'method' => 'getRegionsNames'
     ],
     '/region/info' => [
-        'controller' => 'RegionController',
+        'controller' => 'App\Controllers\RegionController',
         'method' => 'displayRegions'
     ],
     '/weather' => [
-        'controller' => 'WeatherController',
+        'controller' => 'App\Controllers\WeatherController',
         'method' => 'displayCityWeather'
     ],
 ];

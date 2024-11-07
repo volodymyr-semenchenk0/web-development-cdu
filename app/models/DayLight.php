@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use DateTime;
+
 class DayLight
 {
     private DateTime $sunriseTime;
@@ -17,34 +21,23 @@ class DayLight
         $hours = $interval->h;
         $minutes = $interval->i;
 
-        $hoursText = $this->getCorrectHoursWord($hours);
+        $hoursText = $this->getCorrectWord($hours, "година", "години", "годин");
+
         if ($minutes === 0) {
             return "Рівно $hours $hoursText";
         } else {
-            $minutesText = $this->getCorrectMinutesWord($minutes);
+            $minutesText = $this->getCorrectWord($minutes, "хвилина", "хвилини", "хвилин");
             return "$hours $hoursText $minutes $minutesText";
         }
     }
 
-    private function getCorrectHoursWord($hours): string
-    {
-        if ($hours % 10 == 1 && $hours % 100 != 11) {
-            return "година";
-        } elseif ($hours % 10 >= 2 && $hours % 10 <= 4 && ($hours % 100 < 10 || $hours % 100 >= 20)) {
-            return "години";
+    function getCorrectWord($number, $form1, $form2, $form5) {
+        if ($number % 10 == 1 && $number % 100 != 11) {
+            return $form1;
+        } elseif ($number % 10 >= 2 && $number % 10 <= 4 && ($number % 100 < 10 || $number % 100 >= 20)) {
+            return $form2;
         } else {
-            return "годин";
-        }
-    }
-
-    private function getCorrectMinutesWord($minutes): string
-    {
-        if ($minutes % 10 == 1 && $minutes % 100 != 11) {
-            return "хвилина";
-        } elseif ($minutes % 10 >= 2 && $minutes % 10 <= 4 && ($minutes % 100 < 10 || $minutes % 100 >= 20)) {
-            return "хвилини";
-        } else {
-            return "хвилин";
+            return $form5;
         }
     }
 

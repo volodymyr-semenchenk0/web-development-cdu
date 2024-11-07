@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Region {
     private string $name;
     private int $population;

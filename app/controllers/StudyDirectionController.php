@@ -1,7 +1,14 @@
 <?php
 
-require_once 'app/services/StudyDirectionService.php';
-require_once 'app/services/HigherEducationInstitutionService.php';
+namespace App\Controllers;
+
+
+use App\
+{
+    Services\StudyDirectionService,
+    Services\HigherEducationInstitutionService
+};
+use App\Models\InstitutionsCollection;
 
 class StudyDirectionController
 {

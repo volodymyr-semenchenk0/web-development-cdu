@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Services;
+
+use App\Models\StudyDirectionType;
+use Exception;
+
 require_once 'app/models/StudyDirectionType.php';
 
 class StudyDirectionService
@@ -26,7 +31,7 @@ class StudyDirectionService
 
     public function sortByStudyDirectionTypeName(): void
     {
-        usort($this->studyDirectionTypes, array('StudyDirectionType', 'compareDirectionTypeByName'));
+        usort($this->studyDirectionTypes, array('App\Models\StudyDirectionType', 'compareDirectionTypeByName'));
     }
 
     public function getStudyDirectionTypes(): array
