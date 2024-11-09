@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\
+use App\models\
 {
     HigherEducationInstitution,
     InstitutionsCollection,

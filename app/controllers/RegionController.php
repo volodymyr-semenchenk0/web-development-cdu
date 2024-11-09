@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
-use App\Services\RegionService;
+use App\services\RegionService;
 
 class RegionController
 {

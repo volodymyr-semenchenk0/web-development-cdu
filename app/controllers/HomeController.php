@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Home;
+use App\models\Home;
 
 class HomeController {
     public function index(): void

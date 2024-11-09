@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
-use App\Services\WeatherService;
+use App\services\WeatherService;
 
 class WeatherController
 {

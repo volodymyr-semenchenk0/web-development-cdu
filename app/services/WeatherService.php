@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\services;
 
 use DOMDocument;
 use DOMXPath;
-use App\Models\
+use App\models\
 {
     Weather, DayLight
 };

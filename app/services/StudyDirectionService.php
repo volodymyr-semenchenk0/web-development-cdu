@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\services;
 
-use App\Models\StudyDirectionType;
+use App\models\StudyDirectionType;
 use Exception;
 
 require_once 'app/models/StudyDirectionType.php';

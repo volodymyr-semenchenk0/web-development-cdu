@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\models;
 
 use DateTime;
 use Exception;
-use App\Helpers\DateHelper;
 
 class Weather
 {
@@ -18,11 +17,7 @@ class Weather
     {
         $this->cityName = $cityName;
         $this->lightDay = $lightDay;
-        try {
-            $this->currentDate = DateHelper::convertUAFormatToDateTime($currentDate);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+
     }
 
     public function getCityName(): string

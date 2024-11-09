@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
 
 use App\
 {
-    Services\StudyDirectionService,
-    Services\HigherEducationInstitutionService
+    services\StudyDirectionService,
+    services\HigherEducationInstitutionService
 };
-use App\Models\InstitutionsCollection;
+use App\models\InstitutionsCollection;
 
 class StudyDirectionController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\services;
 
-use App\Models\Region;
+use App\models\Region;
 
 class RegionService
 {
