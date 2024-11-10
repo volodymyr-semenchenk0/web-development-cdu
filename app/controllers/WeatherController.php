@@ -18,5 +18,4 @@ class WeatherController
         $this->weatherList[0] = $this->weatherService->fetchWeatherData();
         require_once 'app/views/weather.php';
     }
-
 }

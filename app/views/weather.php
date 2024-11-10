@@ -9,7 +9,17 @@ require_once 'components/head.php';
     <h1>Схід - <?= $this->weatherList[0]->getLightDay()->getSunriseTime()->format('H:i') ?></h1>
     <h1>Захід - <?= $this->weatherList[0]->getLightDay()->getSunsetTime()->format('H:i') ?></h1>
     <h1>Тривалість дня: <?= $this->weatherList[0]->getLightDay()->getDayLightDuration() ?></h1>
-    <h1>Тривалість дня: <?= $this->weatherList[0]->getLightDay()->getDayLightDuration() ?></h1>
+    <h1>
+        <?php
+            $date = $this->weatherList[0]->getCurrentDate();
+            $formatter = new IntlDateFormatter(
+                'uk_UA',
+                IntlDateFormatter::MEDIUM,
+                IntlDateFormatter::NONE
+            );
+        ?>
+        Сьогодні: <?= $formatter->format($date); ?>
+    </h1>
 
 </div>
 <?php require_once 'components/footer.php'; ?>
