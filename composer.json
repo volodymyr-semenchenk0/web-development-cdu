@@ -1,0 +1,26 @@
+{
+    "name": "volodymyr/webdevelopment",
+    "description": "PHP Study project.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Volodymyr Semenchenko"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+      "ext-curl": "*",
+      "ext-dom": "*",
+      "ext-mbstring": "*",
+      "ext-intl": "*"
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public"
+    }
+}
