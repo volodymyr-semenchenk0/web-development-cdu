@@ -2,20 +2,52 @@
 
 namespace App\controllers;
 
-use App\services\WeatherService;
+use App\models\Weather;
+use Exception;
+use App\services\
+{
+    WeatherService,
+    WeatherLocation
+};
 
 class WeatherController
 {
-    public array $weatherList = [];
+    private Weather $weatherData;
+    private array $locations = [];
     private WeatherService $weatherService;
+    private WeatherLocation $weatherCityService;
 
     public function __construct() {
         $this->weatherService = new WeatherService();
+        $this->weatherCityService = new WeatherLocation();
+        $this->locations = $this->weatherCityService->getCitiesUrls();
     }
 
+    /**
+     * @throws Exception
+     */
     public function displayCityWeather() : void
     {
-        $this->weatherList[0] = $this->weatherService->fetchWeatherData();
-        require_once 'app/views/weather.php';
+        try {
+            $response = $_GET['weatherCity'] ?? $this->locations[0]['request'];
+            $this->weatherData = $this->weatherService->fetchWeatherData($response);
+
+            require_once 'app/views/weather.php';
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            http_response_code(400);
+
+            echo $e->getMessage();
+        }
+    }
+
+    public function getWeatherData(): Weather
+    {
+        return $this->weatherData;
+    }
+
+    public function getLocations(): array
+    {
+        return $this->locations;
     }
 }

@@ -8,20 +8,35 @@ use IntlDateFormatter;
 
 class Weather
 {
-    private string $cityName;
+    private string $locationName;
     private DateTime $currentDate;
     private DayLight $lightDay;
-    private array $weatherDataListPerDay = [];
+    private array $temperatureForecast = [];
 
-
-    public function __construct(string $cityName, DayLight $lightDay, string $currentDate)
+    /**
+     * @throws Exception
+     */
+    public function __construct(
+        string $cityName,
+        DayLight $lightDay,
+        string $currentDate,
+        array $temperatureForecast
+    )
     {
-        $this->cityName = $cityName;
+        $this->locationName = $cityName;
         $this->lightDay = $lightDay;
-        $this->currentDate = $this->convertUAFormatToDateTime($currentDate);
+        try {
+            $this->currentDate = $this->convertUAFormatToDateTime($currentDate);
+        } catch (Exception $e) {
+            throw new Exception("Failed to parse currentDate for city $cityName: " . $e->getMessage());
+        }
+        ;$this->temperatureForecast = $temperatureForecast;
     }
 
-    public function convertUAFormatToDateTime($dateString) : DateTime
+    /**
+     * @throws Exception
+     */
+    public function convertUAFormatToDateTime($dateString): DateTime
     {
         $daysMap = [
             'пн' => 'Mon', 'вт' => 'Tue', 'ср' => 'Wed', 'чт' => 'Thu',
@@ -41,34 +56,39 @@ class Weather
 
         $date = DateTime::createFromFormat('D, j M Y', $dateString);
 
-        return $date === false ? throw new Exception("Invalid date format") : $date;
+        if ($date === false) {
+            throw new Exception("Invalid date format: '$dateString'");
+        }
+        return $date;
     }
 
-    public function getCityName() : string
+    public function getLocationName(): string
     {
-        return $this->cityName;
+        return $this->locationName;
     }
 
-    public function getLightDay() : DayLight
+    public function getLightDay(): DayLight
     {
         return $this->lightDay;
     }
 
-    public function getCurrentDate() : DateTime
+    public function getCurrentDate(): DateTime
     {
         return $this->currentDate;
     }
 
-    private function initiateWeatherHoursPerDay()
+    public function getTemperatureForecast(): array
     {
-
+        return $this->temperatureForecast;
     }
 
-    public function getMinTemperaturePerDay() : int {
-        return 0;
+    public function getMinTemperaturePerDay(): int {
+        $temperatures = array_column($this->temperatureForecast, 'temperature');
+        return min($temperatures);
     }
 
-    public function getMaxTemperaturePerDay() : int {
-        return 0;
+    public function getMaxTemperaturePerDay(): int {
+        $temperatures = array_column($this->temperatureForecast, 'temperature');
+        return max($temperatures);
     }
 }

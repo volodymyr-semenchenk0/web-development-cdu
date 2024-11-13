@@ -5,7 +5,7 @@ namespace App\services;
 use DateTime;
 use DOMDocument;
 use DOMXPath;
-use IntlDateFormatter;
+use Exception;
 use App\models\
 {
     Weather, DayLight
@@ -13,55 +13,162 @@ use App\models\
 
 class WeatherService
 {
-    private string $url = 'https://meteofor.com.ua/weather-kharkiv-5053/';
-    private Weather $weather;
+    private string $url = 'https://meteofor.com.ua/';
     private DOMXPath $xpath;
 
-    public function fetchWeatherData() : Weather
+    /**
+     * @throws Exception
+     */
+    public function fetchWeatherData(string $weatherLocation) : Weather
     {
-        $ch = curl_init($this->url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        try {
+            $this->url .= $weatherLocation . '/';
+            $ch = curl_init($this->url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
 
-        $this->parseWeatherData($response);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
 
-        return $this->weather;
+            if ($httpCode !== 200) {
+                throw new Exception("Invalid response from the server: HTTP $httpCode");
+            }
+
+            return $this->parseWeatherData($response);
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception('Error fetching weather data: ' . $e->getMessage());
+        }
     }
 
-    private function parseWeatherData($response) : void
+    /**
+     * @throws Exception
+     */
+    private function parseWeatherData($response) : Weather
     {
-        $dom = new DOMDocument();
-        @$dom->loadHTML($response);
-        $this->xpath = new DOMXPath($dom);
+        try {
+            $dom = new DOMDocument();
+            @$dom->loadHTML($response);
+            $this->xpath = new DOMXPath($dom);
 
-        $cityName = $this->fetchCityName();
-        $dayLight = new DayLight(
-            $this->fetchDayLightTime( 'Схід'),
-            $this->fetchDayLightTime('Захід')
-        );
-        $currentDate = $this->fetchCurrentDate();
+            $cityName = $this->fetchWeatherLocationName();
+            $dayLight = new DayLight(
+                $this->fetchDayLightTime('Схід'),
+                $this->fetchDayLightTime('Захід')
+            );
+            $currentDate = $this->fetchCurrentDate();
+            $temperatureForecast = $this->fetchTemperatureForecast();
 
-        $this->weather = new Weather($cityName, $dayLight, $currentDate);
+            return new Weather($cityName, $dayLight, $currentDate, $temperatureForecast);
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception('Error parsing weather data: ' . $e->getMessage());
+        }
     }
 
-    private function fetchCityName() : string
+    /**
+     * @throws Exception
+     */
+    private function fetchWeatherLocationName(): string
     {
-         return $this->xpath->query("//div[@class='page-title']/h1")->item(0)->nodeValue;
+        try {
+            $node = $this->xpath->query("//div[@class='page-title']/h1")->item(0);
+            if (!$node) {
+                throw new Exception('Location name not found in the page content');
+            }
+
+            return $node->nodeValue;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception('Error fetching location name: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * @throws Exception
+     */
     private function fetchDayLightTime($periodName): string
     {
-        $sunriseNode = $this->xpath->query("//div[@class='astro-times']/div[contains(text(), '$periodName')]");
-        $sunriseText = $sunriseNode->item(0)->nodeValue;
+        try {
+            $sunriseNode = $this->xpath
+                ->query("//div[@class='astro-times']/div[contains(text(), '$periodName')]");
+            $sunriseText = $sunriseNode->item(0)->nodeValue ?? '';
 
-        preg_match('/' . $periodName . ' — ([0-9]{1,2}:[0-9]{2})/', $sunriseText, $matches);
-        return $matches[1];
+            if (!$sunriseText) {
+                throw new Exception("$periodName time not found in the page content");
+            }
+
+            preg_match('/' . $periodName . ' — ([0-9]{1,2}:[0-9]{2})/', $sunriseText, $matches);
+            if (empty($matches[1])) {
+                throw new Exception("Invalid $periodName time format");
+            }
+
+            return $matches[1];
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error fetching $periodName time: " . $e->getMessage());
+        }
     }
 
+    /**
+     * @throws Exception
+     */
     private function fetchCurrentDate() : string
     {
-        return $this->xpath->
-        query("//div[contains(@class, 'date-0')]")->item(0)->nodeValue;
+        try {
+            $node = $this->xpath
+                ->query("//div[contains(@class, 'date')]")->item(1);
+
+            if (!$node) {
+                throw new Exception('Current date not found in the page content');
+            }
+
+            return $node->nodeValue;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception('Error fetching current date: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function fetchTemperatureForecast() : array
+    {
+        try {
+            $temperatureForecast = [];
+
+            $dateItems = $this->xpath->query('//div[@class="widget-row widget-row-datetime-time"]/div[@class="row-item"]');
+            $tempItems = $this->xpath->query('//div[@data-row="temperature-air"]//div[@class="value"]/temperature-value');
+
+            if ($dateItems->length === 0 || $tempItems->length === 0) {
+                throw new Exception('Temperature forecast data not found');
+            }
+
+            foreach ($dateItems as $tempIndex => $item) {
+                $title = $item->getAttribute('title');
+                preg_match_all('/\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}/', $title, $matches);
+                $date = $matches[0][1] ?? $matches[0][0] ?? null;
+
+                $temperatureNode = $tempItems->item($tempIndex);
+                $temperature = $temperatureNode?->getAttribute('value');
+
+                if (!$date || $temperature === null) {
+                    throw new Exception('Invalid or missing data in temperature forecast');
+                }
+
+                $temperatureForecast[] = [
+                    'date' => new DateTime($date),
+                    'temperature' => (int)$temperature
+                ];
+            }
+
+            return $temperatureForecast;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw new Exception('Error fetching temperature forecast: ' . $e->getMessage());
+        }
     }
 }

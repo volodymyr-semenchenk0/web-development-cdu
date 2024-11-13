@@ -3,16 +3,26 @@
 namespace App\models;
 
 use DateTime;
+use Exception;
 
 class DayLight
 {
     private DateTime $sunriseTime;
     private DateTime $sunsetTime;
 
+    /**
+     * @throws Exception
+     */
     public function __construct(string $sunriseTime, string $sunsetTime)
     {
-        $this->sunriseTime = DateTime::createFromFormat('H:i', $sunriseTime);
-        $this->sunsetTime = DateTime::createFromFormat('H:i', $sunsetTime);
+        try {
+            $this->sunriseTime = DateTime::createFromFormat('H:i', $sunriseTime);
+            $this->sunsetTime = DateTime::createFromFormat('H:i', $sunsetTime);
+        }
+        catch (Exception $e) {
+            throw new Exception("Invalid time format: " . $e->getMessage());
+        }
+
     }
 
     public function getDayLightDuration() : string
