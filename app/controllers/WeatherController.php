@@ -29,10 +29,10 @@ class WeatherController
     public function displayCityWeather() : void
     {
         try {
-            $response = $_GET['weatherCity'] ?? $this->locations[0]['request'];
+            $response = $_GET['location'] ?? $this->locations[0]['request'];
             $this->weatherData = $this->weatherService->fetchWeatherData($response);
 
-            require_once 'app/views/weather.php';
+            require_once __DIR__ . '/../views/weather.php';
         } catch (Exception $e) {
             error_log($e->getMessage());
             http_response_code(400);

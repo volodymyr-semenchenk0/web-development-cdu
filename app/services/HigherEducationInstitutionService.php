@@ -10,13 +10,9 @@ use App\models\
 };
 use Exception;
 
-require_once 'app/models/StudyDirectionType.php';
-require_once 'app/models/HigherEducationInstitution.php';
-require_once 'app/models/InstitutionsCollection.php';
-
 class HigherEducationInstitutionService
 {
-    private const string HIGHER_INSTITUTIONS_FILEPATH = "storage/study_directions_info.txt";
+    private const string HIGHER_INSTITUTIONS_FILEPATH = __DIR__ . "/../../storage/study_directions_info.txt";
     private array $studyDirectionsCollection = [];
 
     public function readInstitutionsByTypeFromFile() : void

@@ -19,8 +19,5 @@
       "ext-dom": "*",
       "ext-mbstring": "*",
       "ext-intl": "*"
-    },
-    "scripts": {
-        "start": "php -S localhost:8000 -t public"
     }
 }

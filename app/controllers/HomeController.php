@@ -14,6 +14,6 @@ class HomeController {
             $message = "No message";
         }
 
-        require_once 'app/views/home.php';
+        require_once __DIR__ . '/../views/home.php';
     }
 }

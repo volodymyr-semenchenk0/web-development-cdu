@@ -5,11 +5,9 @@ namespace App\services;
 use App\models\StudyDirectionType;
 use Exception;
 
-require_once 'app/models/StudyDirectionType.php';
-
 class StudyDirectionService
 {
-    private const string DIRECTION_TYPES_FILEPATH = "storage/study_direction_types.txt";
+    private const string DIRECTION_TYPES_FILEPATH = __DIR__ . "/../../storage/study_direction_types.txt";
     private array $studyDirectionTypes = [];
     public function readStudyDirectionTypesFromFile() : void
     {

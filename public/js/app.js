@@ -38,3 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkRadioButtonSelection();
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const tabs = document.querySelectorAll('.tab');
+//     const params = new URLSearchParams(window.location.search);
+//     const activeLocation = params.get('location');
+//
+//     tabs.forEach(tab => {
+//         const requestValue = tab.getAttribute('data-request');
+//         if (requestValue === activeLocation) {
+//             tab.classList.add('tab--active');
+//         } else {
+//             tab.classList.remove('tab--active');
+//         }
+//     });
+// });

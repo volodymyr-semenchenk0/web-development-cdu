@@ -5,61 +5,109 @@ require_once 'components/head.php';
 <body>
 <?php require_once 'components/header.php'; ?>
 <div id="root">
-
-    <div class="city-switcher">
-        <form method="GET" action="/weather">
+    <h1><?= $this->getWeatherData()->getLocationName() ?></h1>
+    <div class="tabs-group">
+        <form id="weather-form" method="GET" action="/weather">
             <?php foreach ($this->getLocations() as $city) : ?>
-                <label>
-                    <input type="radio"
-                           name="weatherCity"
-                           value="<?= $city['request'] ?>"
-                           onChange="this.form.submit()">
-                    <span class="directions-container__radio-label">
-                        <?= $city['name'] ?>
-                    </span>
-                </label>
-
+                <button type="submit"
+                        name="location"
+                        value="<?= $city['request'] ?>"
+                        class="tab
+                        <?= $city['request'] === ($_GET['location'] ??
+                            $this->getLocations()[0]['request']) ?
+                            'tab--active' : ''
+                        ?>"
+                >
+                    <?= $city['name'] ?>
+                </button>
             <?php endforeach; ?>
         </form>
     </div>
-    <h1><?= $this->getWeatherData()->getLocationName() ?></h1>
-    <h1>Схід - <?= $this->getWeatherData()->getLightDay()->getSunriseTime()->format('H:i') ?></h1>
-    <h1>Захід - <?= $this->getWeatherData()->getLightDay()->getSunsetTime()->format('H:i') ?></h1>
-    <h1>Тривалість дня: <?= $this->getWeatherData()->getLightDay()->getDayLightDuration() ?></h1>
-    <h1>
-        <?php
-            $date = $this->getWeatherData()->getCurrentDate();
-            $formatter = new IntlDateFormatter(
-                'uk_UA',
-                IntlDateFormatter::MEDIUM,
-                IntlDateFormatter::NONE,
-            );
-        ?>
-        Сьогодні: <?= $formatter->format($date); ?>
+    <div class="container">
+        <div class="weather-cards-wrapper">
+            <div class="weather-card weather-card--default">
+                <?php
+                    $date = $this->getWeatherData()->getCurrentDate();
+                    $formatter = new IntlDateFormatter(
+                        'uk_UA',
+                        IntlDateFormatter::MEDIUM,
+                        IntlDateFormatter::NONE,
+                    );
+                    $formatter->setPattern('EEEE');
+                    $dayOfWeek = mb_convert_case($formatter->format($date), MB_CASE_TITLE, "UTF-8");
 
-    </h1>
-    <h1>Мінімальна температура: <?= $this->getWeatherData()->getMinTemperaturePerDay() ?></h1>
-    <h1>Максимальна температура: <?= $this->getWeatherData()->getMaxTemperaturePerDay() ?></h1>
-
-    <?php
-    $timezone = new DateTimeZone('Europe/Kyiv');
-    foreach ($this->getWeatherData()->getTemperatureForecast() as $city) :
-        ?>
-        <h1>
-            <?=
-                $city['date']
-                    ->setTimezone(new DateTimeZone('Europe/Kyiv'))
-                    ->format('H:i')
-            ?>
-        </h1>
-        <span class="temperature">
-            <?=
-                ($city['temperature'] > 0 ? '+' : '') . $city['temperature'] . '°C'
-            ?>
-        </span>
-    <?php endforeach; ?>
-
-
+                    $formatter->setPattern('d MMM y');
+                    $datePart = $formatter->format($date);
+                ?>
+                <span class="weather-card__value weather-card__value--opacity">
+                    <?= $dayOfWeek ?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                    <?= $datePart ?>
+                </span>
+            </div>
+            <div class="weather-card weather-card--minimum">
+                <span class="weather-card__value weather-card__value--opacity">
+                  <?= $this->getWeatherData()->getMinTemperaturePerDay() . '°'?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                   Мін
+                </span>
+            </div>
+            <div class="weather-card weather-card--maximum">
+                <span class="weather-card__value weather-card__value--opacity">
+                  <?= $this->getWeatherData()->getMaxTemperaturePerDay() . '°'?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                   Макс
+                </span>
+            </div>
+        </div>
+        <div class="weather-cards-wrapper">
+            <div class="weather-card weather-card--default">
+                <span class="weather-card__value weather-card__value--opacity">
+                   <?= $this->getWeatherData()->getLightDay()->getDayLightDuration() ?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                   Тривалість дня
+                </span>
+            </div>
+            <div class="weather-card weather-card--default">
+                <div class="weather-card__image-wrapper">
+                    <img class="weather-card__image" src=" /images/sunrise.png" alt="Sunrise">
+                </div>
+                <span class="weather-card__value weather-card__value--opacity">
+                   <?= $this->getWeatherData()->getLightDay()->getSunriseTime()->format('H:i') ?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                   Cхід
+                </span>
+            </div>
+            <div class="weather-card weather-card--default">
+                <div class="weather-card__image-wrapper">
+                    <img class="weather-card__image" src="/images/sunset.png" alt="Sunset">
+                </div>
+                <span class="weather-card__value weather-card__value--opacity">
+                   <?= $this->getWeatherData()->getLightDay()->getSunsetTime()->format('H:i') ?>
+                </span>
+                <span class="weather-card__description weather-card__description--opacity">
+                   Захід
+                </span>
+            </div>
+        </div>
+        <div class="forecast-temperature-list-wrapper">
+            <?php foreach ($this->getWeatherData()->getTemperatureForecast() as $city) : ?>
+                <div class="forecast-temperature-card">
+                    <span class="weather-card__description weather-card__description--neutral">
+                        <?= $city['date']->setTimezone(new DateTimeZone('Europe/Kyiv'))->format('H:i') ?>
+                    </span>
+                    <span class="weather-card__value weather-card__value--neutral">
+                        <?= ($city['temperature'] > 0 ? '+' : '') . $city['temperature'] . '°' ?>
+                    </span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </div>
 <?php require_once 'components/footer.php'; ?>
 </body>

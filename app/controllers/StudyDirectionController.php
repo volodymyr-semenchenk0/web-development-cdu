@@ -26,7 +26,7 @@ class StudyDirectionController
 
     public function displayStudyDirectionTypes(): void
     {
-        require_once 'app/views/studyDirectionTypes.php';
+        require_once __DIR__ . '/../views/studyDirectionTypes.php';
     }
 
     public function displayInstitutionInfo(): void
@@ -40,7 +40,7 @@ class StudyDirectionController
                 $this->higherEducationInstitutionService->
                 getInstitutionByDirection($this->studyDirectionTypes[$response]);
 
-            require_once 'app/views/higherEducationInstitution.php';
+            require_once __DIR__ . '/../views/higherEducationInstitution.php';
         }
         else {
             http_response_code(400);
