@@ -440,5 +440,5 @@ select {
 .tab--active {
     color: var(--color-typography-brand-primary);
     background-color: var(--color-background-white);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }

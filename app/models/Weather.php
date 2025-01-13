@@ -46,7 +46,7 @@ class Weather
         $monthsMap = [
             'січ' => 'Jan', 'лют' => 'Feb', 'бер' => 'Mar', 'квіт' => 'Apr',
             'трав' => 'May', 'черв' => 'Jun', 'лип' => 'Jul', 'серп' => 'Aug',
-            'вер' => 'Sep', 'жовт' => 'Oct', 'лис' => 'Nov', 'груд' => 'Dec'
+            'вер' => 'Sep', 'жовт' => 'Oct', 'лис' => 'Nov', 'гру' => 'Dec'
         ];
 
         $dateString = mb_strtolower($dateString,'UTF-8');

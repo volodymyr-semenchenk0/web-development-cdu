@@ -5,8 +5,6 @@ require_once __DIR__ . '/../config/routes.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-echo "Requested URI: " . $uri;
-
 // Check if the route exists
 if (isset($routes[$uri])) {
     $controllerName = $routes[$uri]['controller'];
