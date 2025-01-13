@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models;
+
 class StudyDirectionType
 {
     private string $directionTypeName;

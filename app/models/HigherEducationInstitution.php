@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models;
+
 class HigherEducationInstitution
 {
     private string $name;

@@ -1,17 +1,24 @@
 <?php
 
-require_once 'app/models/StudyDirectionType.php';
-require_once 'app/models/HigherEducationInstitution.php';
-require_once 'app/models/InstitutionsCollection.php';
+namespace App\services;
+
+use App\models\
+{
+    HigherEducationInstitution,
+    InstitutionsCollection,
+    StudyDirectionType
+};
+use Exception;
 
 class HigherEducationInstitutionService
 {
+    private const string HIGHER_INSTITUTIONS_FILEPATH = __DIR__ . "/../../storage/study_directions_info.txt";
     private array $studyDirectionsCollection = [];
 
-    public function readInstitutionsByTypeFromFile($filePath) : void
+    public function readInstitutionsByTypeFromFile() : void
     {
         try {
-            $myFile = fopen($filePath, "r");
+            $myFile = fopen(self::HIGHER_INSTITUTIONS_FILEPATH, "r");
 
             while (!feof($myFile)) {
                 $studyDirectionTypeLine = trim(fgets($myFile));
@@ -22,8 +29,7 @@ class HigherEducationInstitutionService
                     $this->studyDirectionsCollection[] = $collectionItem;
 
                     $institutionCount = (int)trim(fgets($myFile));
-                    while($institutionCount > 0)
-                    {
+                    while($institutionCount > 0) {
                         $collectionItem->addInstitutionToArray($this->prepareInstitution($myFile));
                         $institutionCount--;
                     }

@@ -1,13 +1,14 @@
 <?php
 
-require_once 'app/models/Region.php';
-require_once 'app/services/RegionService.php';
+namespace App\controllers;
+
+use App\services\RegionService;
 
 class RegionController
 {
     private RegionService $regionService;
     private array $regions = [];
-    private const string REGIONS = "storage/oblinfo.txt";
+    private const string REGIONS = __DIR__ . "/../../storage/oblinfo.txt";
 
     public function __construct()
     {
@@ -21,16 +22,15 @@ class RegionController
         if (isset($response) && $response != null && array_key_exists($response, $this->regions)) {
             $this->regions = [$response => $this->regions[$response]];
         }
-        require_once 'app/views/regionsList.php';
+        require_once __DIR__ . '/../views/regionsList.php';
     }
-    public function gerRegionsNames() : void
+    public function getRegionsNames() : void
     {
-        require_once 'app/views/regionSearch.php';
+        require_once __DIR__ . '/../views/regionSearch.php';
     }
 
     public function getRegions(): array
     {
         return $this->regions;
     }
-
 }

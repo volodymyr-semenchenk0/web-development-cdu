@@ -1,5 +1,9 @@
 <?php
 
+namespace App\services;
+
+use App\models\Region;
+
 class RegionService
 {
     private array $regions = [];

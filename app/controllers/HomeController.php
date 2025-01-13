@@ -1,6 +1,8 @@
 <?php
 
-require_once 'app/models/Home.php';
+namespace App\controllers;
+
+use App\models\Home;
 
 class HomeController {
     public function index(): void
@@ -12,6 +14,6 @@ class HomeController {
             $message = "No message";
         }
 
-        require_once 'app/views/home.php';
+        require_once __DIR__ . '/../views/home.php';
     }
 }
