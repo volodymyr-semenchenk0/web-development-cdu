@@ -6,18 +6,18 @@
     <?php require_once 'components/header.php'; ?>
     <div id="root">
         <h1>Study Directions</h1>
-        <div class="directions-container">
-            <form class="directions-container__form" id="directions-form" method="GET" action="/study-directions/institution">
-                <p class="directions-container__description">Please select study direction type:</p>
-                <div class="directions-container__radio-group">
+        <div class="content-wrapper">
+            <form class="content-wrapper__form" id="directions-form" method="GET" action="/study-directions/institution">
+                <p class="content-wrapper__description">Please select study direction type:</p>
+                <div class="study-direction__radio-group">
                     <?php foreach ($this->studyDirectionTypes as $key => $directionType) : ?>
-                        <label class="directions-container__radio-card" for="<?=$key?>">
+                        <label class="study-direction__radio-card" for="<?=$key?>">
                             <input type="radio"
                                    id="<?=$key?>"
                                    name="studyDirectionId"
                                    value="<?=$key?>"
                             />
-                            <span class="directions-container__radio-label">
+                            <span class="study-direction__radio-label">
                                 <?=$directionType->getDirectionTypeName()?>
                             </span>
                         </label>

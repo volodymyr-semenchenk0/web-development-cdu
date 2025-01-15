@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkRadioButtonSelection() {
         let isChecked = false;
         for (const radioButton of radioButtons) {
-            const card = radioButton.closest('.directions-container__radio-card');
+            const card = radioButton.closest('.study-direction__radio-card');
 
             if (radioButton.checked) {
                 isChecked = true;
-                card.classList.add('directions-container__radio-card--checked');
+                card.classList.add('study-direction__radio-card--checked');
             } else {
-                card.classList.remove('directions-container__radio-card--checked');
+                card.classList.remove('study-direction__radio-card--checked');
             }
         }
 
@@ -38,18 +38,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkRadioButtonSelection();
 });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const tabs = document.querySelectorAll('.tab');
-//     const params = new URLSearchParams(window.location.search);
-//     const activeLocation = params.get('location');
-//
-//     tabs.forEach(tab => {
-//         const requestValue = tab.getAttribute('data-request');
-//         if (requestValue === activeLocation) {
-//             tab.classList.add('tab--active');
-//         } else {
-//             tab.classList.remove('tab--active');
-//         }
-//     });
-// });

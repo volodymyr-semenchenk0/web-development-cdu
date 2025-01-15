@@ -168,13 +168,13 @@ tr:hover {
     background-color: var(--color-background-white-hover);
 }
 
-.directions-container__form {
+.content-wrapper__form {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.directions-container {
+.content-wrapper {
     padding: 24px;
     width: 100%;
     border-radius: 16px;
@@ -226,13 +226,13 @@ input[type="radio"]:checked {
     border: 6px solid var(--color-component-radio-checked);
 }
 
-.directions-container__radio-group {
+.study-direction__radio-group {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.directions-container__radio-card {
+.study-direction__radio-card {
     display: flex;
     align-items: center;
     padding: 12px 16px;
@@ -244,24 +244,23 @@ input[type="radio"]:checked {
     cursor: pointer;
 }
 
-.directions-container__radio-card input[type="radio"]:checked + .directions-container__radio-label {
+.study-direction__radio-card input[type="radio"]:checked + .study-direction__radio-label {
     color: var(--color-typography-brand-primary);
 }
 
-
-.directions-container__radio-card:hover {
+.study-direction__radio-card:hover {
     border-radius: 12px;
     background-color: var(--color-background-light-gray-hover);
 }
 
-.directions-container__radio-card.directions-container__radio-card--checked {
+.study-direction__radio-card.directions-container__radio-card--checked {
     border-radius: 12px;
     border: 1px solid var(--color-border-primary);
     background-color: var(   --color-background-brand-light);
 }
 
 
-.directions-container__radio-label {
+.study-direction__radio-label {
     font-size: 16px;
     line-height: 24px;
     cursor: pointer;
@@ -302,7 +301,7 @@ input[type="radio"]:checked {
     transition: fill 0.5s ease;
 }
 
-select {
+select, input[type="text"] {
     padding: 16px;
     border: 1px solid var(--color-border-light);
     border-radius: 16px;
@@ -441,4 +440,8 @@ select {
     color: var(--color-typography-brand-primary);
     background-color: var(--color-background-white);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.search-results {
+    margin-top: 32px;
 }

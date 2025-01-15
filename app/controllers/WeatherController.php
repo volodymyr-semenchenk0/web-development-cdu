@@ -31,14 +31,14 @@ class WeatherController
         try {
             $response = $_GET['location'] ?? $this->locations[0]['request'];
             $this->weatherData = $this->weatherService->fetchWeatherData($response);
-
-            require_once __DIR__ . '/../views/weather.php';
         } catch (Exception $e) {
             error_log($e->getMessage());
             http_response_code(400);
 
             echo $e->getMessage();
         }
+
+        require_once __DIR__ . '/../views/weather.php';
     }
 
     public function getWeatherData(): Weather
