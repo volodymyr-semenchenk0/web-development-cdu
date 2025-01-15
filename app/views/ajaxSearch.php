@@ -15,7 +15,7 @@ require_once 'components/head.php';
         <div id="searchResults" class="search-results"></div>
     </div>
     <script>
-        document.getElementById('searchInput').addEventListener('input', function () {
+        document.getElementById('searchInput').addEventListener('keypress', function () {
             const query = this.value.trim();
 
             if (!query) {
@@ -23,19 +23,23 @@ require_once 'components/head.php';
                 return;
             }
 
-            fetch(`/search?query=${encodeURIComponent(query)}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Помилка: ${response.statusText}`);
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/search?query=${encodeURIComponent(query)}`, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById('searchResults').innerHTML = xhr.responseText;
+                    } else {
+                        document.getElementById('searchResults').innerHTML = `<div class="error">Помилка: ${xhr.statusText}</div>`;
                     }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('searchResults').innerHTML = data;
-                })
-                .catch(error => {
-                    document.getElementById('searchResults').innerHTML = `<div class="error">${error.message}</div>`;
-                });
+                }
+            };
+
+            xhr.onerror = function () {
+                document.getElementById('searchResults').innerHTML = `<div class="error">Помилка запиту</div>`;
+            };
+
+            xhr.send();
         });
     </script>
     <?php require_once 'components/footer.php'; ?>
