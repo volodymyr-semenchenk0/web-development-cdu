@@ -29,4 +29,9 @@ $routes = [
         'controller' => 'App\controllers\WeatherController',
         'method' => 'displayCityWeather'
     ],
+    '/search' => [
+        'controller' => 'App\controllers\AjaxSearchController',
+        'method' => 'liveSearch'
+    ],
+
 ];
