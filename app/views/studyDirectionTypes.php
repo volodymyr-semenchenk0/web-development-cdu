@@ -5,10 +5,10 @@
 <body>
     <?php require_once 'components/header.php'; ?>
     <div id="root">
-        <h1>Study Directions</h1>
+        <h1>Напрямки Навчання</h1>
         <div class="content-wrapper">
             <form class="content-wrapper__form" id="directions-form" method="GET" action="/study-directions/institution">
-                <p class="content-wrapper__description">Please select study direction type:</p>
+                <p class="content-wrapper__description">Оберіть напрямок навчання:</p>
                 <div class="study-direction__radio-group">
                     <?php foreach ($this->studyDirectionTypes as $key => $directionType) : ?>
                         <label class="study-direction__radio-card" for="<?=$key?>">

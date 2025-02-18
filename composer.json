@@ -19,6 +19,7 @@
       "ext-dom": "*",
       "ext-mbstring": "*",
       "ext-intl": "*",
-      "ext-libxml": "*"
+      "ext-libxml": "*",
+      "ext-simplexml": "*"
     }
 }

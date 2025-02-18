@@ -14,12 +14,12 @@
                                 <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="currentColor"/>
                             </svg>
                         </span>
-                        Choose Another Type
+                        Оберіть Інший Тип
                     </a>
                 `);
             }
         </script>
-        <h1>Regions Info</h1>
+        <h1>Інформація про Регіони</h1>
         <div class="table-wrapper">
             <table class="regions-table">
                     <tr>

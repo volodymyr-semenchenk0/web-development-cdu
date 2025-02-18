@@ -226,6 +226,10 @@ input[type="radio"]:checked {
     border: 6px solid var(--color-component-radio-checked);
 }
 
+input.error {
+    border: 1px solid red;
+}
+
 .study-direction__radio-group {
     display: flex;
     flex-wrap: wrap;
