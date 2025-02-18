@@ -33,5 +33,12 @@ $routes = [
         'controller' => 'App\controllers\AjaxSearchController',
         'method' => 'liveSearch'
     ],
-
+    '/ip-info' => [
+        'controller' => 'App\controllers\IPController',
+        'method' => 'showIpSearch'
+    ],
+    '/ip-info/json' => [
+        'controller' => 'App\controllers\IPController',
+        'method' => 'getJson'
+    ],
 ];

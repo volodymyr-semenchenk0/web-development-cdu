@@ -5,10 +5,10 @@ require_once 'components/head.php';
 <body>
     <?php require_once 'components/header.php'; ?>
     <div id="root">
-        <h1>Region</h1>
+        <h1>Інформація про Регіон</h1>
         <div class="content-wrapper">
             <form class="content-wrapper__form" id="directions-form" method="POST" action="/region/info">
-                <label for="regions">Choose Region</label>
+                <label for="regions">Оберіть Регіон</label>
                 <select name="selectedRegionId" id="regions">
                     <?php foreach ($this->getRegions() as $key => $region): ?>
                     <option value="<?= $key ?>">
@@ -16,7 +16,7 @@ require_once 'components/head.php';
                      </option>
                     <?php endforeach; ?>
                 </select>
-                <button class="button button__primary" id="submit-button" type="submit" >Search Information</button>
+                <button class="button button__primary" id="submit-button" type="submit" >Знайти Інформацію</button>
             </form>
         </div>
     </div>

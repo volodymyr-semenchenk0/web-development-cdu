@@ -5,7 +5,7 @@ require_once 'components/head.php';
 <body>
     <?php require_once 'components/header.php'; ?>
     <div id="root">
-        <h1>Search products on the Foxtrot Website</h1>
+        <h1>Пошук продуктів на сайті - Foxtrot</h1>
         <div class="content-wrapper">
             <div class="content-wrapper__form">
                 <label for="searchInput">Пошуковий запит</label>
