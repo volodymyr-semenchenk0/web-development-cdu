@@ -58,6 +58,14 @@ class AjaxSearchService
         libxml_clear_errors();
 
         $xpath = new DOMXPath($dom);
+
+        $unwantedNodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " card-tags ")]');
+        foreach ($unwantedNodes as $node) {
+            if ($node->parentNode) {
+                $node->parentNode->removeChild($node);
+            }
+        }
+
         $nodes = $xpath->query('//div[contains(@class, "listing__body-wrap")]');
 
         if ($nodes->length === 0) {
